@@ -331,7 +331,7 @@ dataset = rows.map(r => {
   // =========================
   // Fare: Estimated (placeholder) + Actual from dataset
   // =========================
-  function estimateFare({ distance_km, duration_min, peak, rain, thunder, weekend }){
+ function estimateFare({ distance_km, duration_min, peak, rain, thunder, weekend }){
   const b0 = 4.50;
   const bDist = 1.65;
   const bDur = 0.28;
@@ -340,13 +340,15 @@ dataset = rows.map(r => {
   const bThunder = 3.00;  // 仮
   const bWeekend = 1.00;
 
-  return b0
-    + bDist*distance_km
-    + bDur*duration_min
-    + bPeak*peak
-    + bRain*rain
-    + bThunder*thunder
-    + bWeekend*weekend;
+  return (
+    b0 +
+    bDist * distance_km +
+    bDur * duration_min +
+    bPeak * peak +
+    bRain * rain +
+    bThunder * thunder +
+    bWeekend * weekend
+  );
 }
 
   function actualFareFromDataset(query){

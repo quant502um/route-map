@@ -292,26 +292,33 @@
       const rows = parseCSV(text);
 
       // Normalize
-      dataset = rows.map(r => ({
-        day_type: r.day_type,
-        time: r.time,
-        hour: hourFromTime(r.time),
-        duration_min: Number(r.duration_min),
-        distance_km: Number(r.distance_km),
-        const w = String(r.weather || "Clear").trim().toLowerCase();
-      weather:
-  　　 (w === "thunder" || w === "thunderstorm") ? "Thunder"
-  　　　: (w === "rain") ? "Rain"
-  　　　: "Clear",
-　　　　rain: (w === "rain") ? 1 : 0,
-       thunder: (w === "thunder" || w === "thunderstorm") ? 1 : 0,
-        weekend: dayToWeekend(r.day_type),
-        price_rm: Number(r.price_rm),
-      })).filter(r =>
-        Number.isFinite(r.duration_min) &&
-        Number.isFinite(r.distance_km) &&
-        Number.isFinite(r.price_rm)
-      );
+dataset = rows.map(r => {
+  const w = String(r.weather || "Clear").trim().toLowerCase();
+
+  const weather =
+    (w === "thunder" || w === "thunderstorm") ? "Thunder"
+    : (w === "rain") ? "Rain"
+    : "Clear";
+
+  return {
+    day_type: r.day_type,
+    time: r.time,
+    hour: hourFromTime(r.time),
+    duration_min: Number(r.duration_min),
+    distance_km: Number(r.distance_km),
+
+    weather,
+    rain: (weather === "Rain") ? 1 : 0,
+    thunder: (weather === "Thunder") ? 1 : 0,
+
+    weekend: dayToWeekend(r.day_type),
+    price_rm: Number(r.price_rm),
+  };
+}).filter(r =>
+  Number.isFinite(r.duration_min) &&
+  Number.isFinite(r.distance_km) &&
+  Number.isFinite(r.price_rm)
+);
 
       setStatus(`Dataset loaded (${dataset.length} trips).`);
     } catch(err){
@@ -324,14 +331,24 @@
   // =========================
   // Fare: Estimated (placeholder) + Actual from dataset
   // =========================
-  function estimateFare({ distance_km, duration_min, peak, rain, weekend }){
-    // TODO: Replace these with your friend’s regression coefficients
-    const b0 = 4.50;
-    const bDist = 1.65;
-    const bDur = 0.28;
-    const bPeak = 2.00;
-    const bRain = 1.80;
-    const bWeekend = 1.00;
+  function estimateFare({ distance_km, duration_min, peak, rain, thunder, weekend }){
+  const b0 = 4.50;
+  const bDist = 1.65;
+  const bDur = 0.28;
+  const bPeak = 2.00;
+  const bRain = 1.80;
+  const bThunder = 3.00;  // 仮（あとで回帰係数に置き換え）
+  const bWeekend = 1.00;
+
+  return b0
+    + bDist*distance_km
+    + bDur*duration_min
+    + bPeak*peak
+    + bRain*rain
+    + bThunder*thunder
+    + bWeekend*weekend;
+}
+
 
     return b0 + bDist*distance_km + bDur*duration_min + bPeak*peak + bRain*rain + bWeekend*weekend;
   }
@@ -348,7 +365,7 @@
       const distOk = Math.abs(d.distance_km - query.distance_km) <= distTol;
       const durOk  = Math.abs(d.duration_min - query.duration_min) <= durTol;
 
-      const weatherOk = (d.rain === query.rain);
+      const weatherOk = (d.weather === query.weather);
       const weekendOk = (d.weekend === query.weekend);
 
       // time matching (optional)
@@ -373,10 +390,12 @@
 
     const hour = hourFromTime(el.time.value);
     const weekend = dayToWeekend(el.day.value);
-    const rain = String(el.weather.value).toLowerCase() === "rain" ? 1 : 0;
-    const peak = isPeakHour(hour);
+    const wUI = String(el.weather.value).toLowerCase();
+    const rain = (wUI === "rain" || wUI === "thunder") ? 1 : 0;
+    const thunder = (wUI === "thunder") ? 1 : 0;
 
-    const features = { ...lastRoute, hour, weekend, rain, peak };
+    const features = { ...lastRoute, hour, weekend, rain, thunder, peak };
+
     const est = estimateFare(features);
 
     const act = actualFareFromDataset(features);

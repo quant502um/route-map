@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -13,114 +13,176 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <style>
-    body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
-    #topbar { padding: 12px; display: grid; gap: 8px; background:#fff; }
-    #topbar input { padding:10px; font-size:14px; width:100%; }
-    #topbar button { padding:10px; font-size:14px; cursor:pointer; }
-    #map { height: calc(100vh - 140px); }
+    body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+    #topbar { padding: 12px; display: grid; gap: 8px; background: #fff; }
+    #topbar input { padding: 10px; font-size: 14px; width: 100%; box-sizing: border-box; }
+    #topbar button { padding: 10px; font-size: 14px; cursor: pointer; }
+    #map { height: calc(100vh - 150px); }
     #status { font-size: 13px; opacity: 0.85; }
     @media (min-width: 700px){
-      #topbar { grid-template-columns: 1fr 1fr auto; align-items:center; }
+      #topbar { grid-template-columns: 1fr 1fr auto; align-items: center; }
       #status { grid-column: 1 / -1; }
-      #map { height: calc(100vh - 80px); }
+      #map { height: calc(100vh - 90px); }
     }
   </style>
 </head>
+
 <body>
   <div id="topbar">
-    <input id="from" placeholder="出発地（例: 28 Mont Kiara / KL Sentral）" />
-    <input id="to" placeholder="目的地（例: Four Seasons Hotel KL）" />
-    <button id="btn">ルート検索</button>
-    <div id="status">出発地と目的地を入れて「ルート検索」。</div>
+    <input id="from" placeholder="Pickup point (e.g., 28 Mont Kiara / KL Sentral)" />
+    <input id="to" placeholder="Drop-off point (e.g., Four Seasons Hotel KL)" />
+    <button id="btn">Find route</button>
+
+    <div id="status">
+      Enter a pickup and drop-off location, then click <b>Find route</b>.
+    </div>
   </div>
+
   <div id="map"></div>
 
   <script>
-    const statusEl = document.getElementById("status");
-
-    // 地図（初期はKL周辺）
+    // --- Map init (Kuala Lumpur default) ---
     const map = L.map("map").setView([3.1390, 101.6869], 12);
+
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
-      attribution: "&copy; OpenStreetMap contributors"
+      attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
-    let fromMarker, toMarker, routeLine;
+    // If embedded in Google Sites (iframe), size may change after load
+    setTimeout(() => map.invalidateSize(), 500);
+    window.addEventListener("resize", () => map.invalidateSize());
 
-    function setStatus(msg){ statusEl.textContent = msg; }
+    const statusEl = document.getElementById("status");
+    const fromEl = document.getElementById("from");
+    const toEl = document.getElementById("to");
+    const btnEl = document.getElementById("btn");
 
-    async function geocode(query){
-      // Nominatim（OSMの地名検索）※連打しない前提
-      const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}`;
-      const res = await fetch(url, { headers: { "Accept-Language": "en" }});
-      if(!res.ok) throw new Error("geocode failed");
+    let fromMarker = null;
+    let toMarker = null;
+    let routeLine = null;
+
+    function setStatus(msg) {
+      statusEl.textContent = msg;
+    }
+
+    function clearMapObjects() {
+      if (fromMarker) map.removeLayer(fromMarker);
+      if (toMarker) map.removeLayer(toMarker);
+      if (routeLine) map.removeLayer(routeLine);
+      fromMarker = null;
+      toMarker = null;
+      routeLine = null;
+    }
+
+    async function geocode(query) {
+      const url = "https://nominatim.openstreetmap.org/search?format=json&q=" +
+                  encodeURIComponent(query);
+      const res = await fetch(url, {
+        headers: { "Accept-Language": "en" }
+      });
       const data = await res.json();
-      if(!data.length) return null;
+      if (!data || data.length === 0) return null;
       return { lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon), name: data[0].display_name };
     }
 
-    async function route(from, to){
-      // OSRM public server（車ルート）
+    async function getRoute(from, to) {
+      // OSRM: lon,lat order
       const url =
-        `https://router.project-osrm.org/route/v1/driving/${from.lon},${from.lat};${to.lon},${to.lat}` +
-        `?overview=full&geometries=geojson&steps=false`;
+        `https://router.project-osrm.org/route/v1/driving/` +
+        `${from.lon},${from.lat};${to.lon},${to.lat}` +
+        `?overview=full&geometries=geojson`;
+
       const res = await fetch(url);
-      if(!res.ok) throw new Error("route failed");
       const data = await res.json();
-      if(!data.routes || !data.routes.length) return null;
-      return data.routes[0];
+
+      if (!data || data.code !== "Ok" || !data.routes || data.routes.length === 0) {
+        return null;
+      }
+
+      const route = data.routes[0];
+      return {
+        distance_m: route.distance,
+        duration_s: route.duration,
+        geojson: route.geometry
+      };
     }
 
-    function clearOld(){
-      if(fromMarker) map.removeLayer(fromMarker);
-      if(toMarker) map.removeLayer(toMarker);
-      if(routeLine) map.removeLayer(routeLine);
+    function formatKm(meters) {
+      return (meters / 1000).toFixed(2) + " km";
     }
 
-    document.getElementById("btn").addEventListener("click", async () => {
-      const fromText = document.getElementById("from").value.trim();
-      const toText   = document.getElementById("to").value.trim();
-      if(!fromText || !toText){
-        setStatus("出発地・目的地の両方を入力してね。");
+    function formatMin(seconds) {
+      return Math.round(seconds / 60) + " min";
+    }
+
+    async function handleFindRoute() {
+      const fromQ = fromEl.value.trim();
+      const toQ = toEl.value.trim();
+
+      if (!fromQ || !toQ) {
+        setStatus("Please enter both pickup and drop-off locations.");
         return;
       }
 
-      try{
-        setStatus("場所を検索中…");
-        const [fromLoc, toLoc] = await Promise.all([geocode(fromText), geocode(toText)]);
-        if(!fromLoc || !toLoc){
-          setStatus("場所が見つからなかった…表記を変えて再検索してみて。");
+      try {
+        clearMapObjects();
+
+        setStatus("Searching locations...");
+        const [fromLoc, toLoc] = await Promise.all([geocode(fromQ), geocode(toQ)]);
+
+        if (!fromLoc) {
+          setStatus("Pickup point not found. Please try a more specific name.");
+          return;
+        }
+        if (!toLoc) {
+          setStatus("Drop-off point not found. Please try a more specific name.");
           return;
         }
 
-        setStatus("ルート計算中…");
-        const r = await route(fromLoc, toLoc);
-        if(!r){
-          setStatus("ルートが取得できなかった…");
+        setStatus("Calculating route...");
+        const route = await getRoute(fromLoc, toLoc);
+
+        if (!route) {
+          setStatus("Route not found. Please try different locations.");
           return;
         }
 
-        clearOld();
+        fromMarker = L.marker([fromLoc.lat, fromLoc.lon]).addTo(map).bindPopup("Pickup").openPopup();
+        toMarker = L.marker([toLoc.lat, toLoc.lon]).addTo(map).bindPopup("Drop-off");
 
-        fromMarker = L.marker([fromLoc.lat, fromLoc.lon]).addTo(map).bindPopup("From: " + fromLoc.name);
-        toMarker   = L.marker([toLoc.lat, toLoc.lon]).addTo(map).bindPopup("To: " + toLoc.name);
+        routeLine = L.geoJSON(route.geojson, {
+          style: { weight: 5, opacity: 0.8 }
+        }).addTo(map);
 
-        routeLine = L.geoJSON(r.geometry).addTo(map);
-
-        // 距離・時間表示
-        const km = (r.distance / 1000).toFixed(1);
-        const min = Math.round(r.duration / 60);
-        setStatus(`距離: ${km} km / 目安時間: ${min} 分`);
-
-        // 全体が見えるようにズーム
+        // Fit to route bounds
         const bounds = routeLine.getBounds();
-        map.fitBounds(bounds, { padding: [20, 20] });
+        map.fitBounds(bounds, { padding: [30, 30] });
 
-      }catch(e){
+        const distText = formatKm(route.distance_m);
+        const durText = formatMin(route.duration_s);
+
+        setStatus(`Distance: ${distText} • Duration: ${durText}`);
+
+        // If embedded, ensure redraw after fitBounds
+        setTimeout(() => map.invalidateSize(), 300);
+
+      } catch (e) {
         console.error(e);
-        setStatus("エラーが出た…時間をおいて再試行してね。");
+        setStatus("Sorry—something went wrong. Please try again.");
       }
+    }
+
+    btnEl.addEventListener("click", handleFindRoute);
+
+    // Optional: press Enter to search
+    [fromEl, toEl].forEach(el => {
+      el.addEventListener("keydown", (ev) => {
+        if (ev.key === "Enter") handleFindRoute();
+      });
     });
+
+    setStatus('Enter a pickup and drop-off location, then click "Find route".');
   </script>
 </body>
 </html>

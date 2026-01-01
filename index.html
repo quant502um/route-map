@@ -304,6 +304,7 @@
   　　　: (w === "rain") ? "Rain"
   　　　: "Clear",
 　　　　rain: (w === "rain") ? 1 : 0,
+       thunder: (w === "thunder" || w === "thunderstorm") ? 1 : 0,
         weekend: dayToWeekend(r.day_type),
         price_rm: Number(r.price_rm),
       })).filter(r =>

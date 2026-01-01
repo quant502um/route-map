@@ -298,8 +298,12 @@
         hour: hourFromTime(r.time),
         duration_min: Number(r.duration_min),
         distance_km: Number(r.distance_km),
-        weather: String(r.weather || "Clear"),
-        rain: String(r.weather || "").toLowerCase() === "rain" ? 1 : 0,
+        const w = String(r.weather || "Clear").trim().toLowerCase();
+      weather:
+  　　 (w === "thunder" || w === "thunderstorm") ? "Thunder"
+  　　　: (w === "rain") ? "Rain"
+  　　　: "Clear",
+　　　　rain: (w === "rain") ? 1 : 0,
         weekend: dayToWeekend(r.day_type),
         price_rm: Number(r.price_rm),
       })).filter(r =>

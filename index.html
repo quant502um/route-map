@@ -337,7 +337,7 @@ dataset = rows.map(r => {
   const bDur = 0.28;
   const bPeak = 2.00;
   const bRain = 1.80;
-  const bThunder = 3.00;  // 仮（あとで回帰係数に置き換え）
+  const bThunder = 3.00;  // 仮
   const bWeekend = 1.00;
 
   return b0
@@ -348,10 +348,6 @@ dataset = rows.map(r => {
     + bThunder*thunder
     + bWeekend*weekend;
 }
-
-
-    return b0 + bDist*distance_km + bDur*duration_min + bPeak*peak + bRain*rain + bWeekend*weekend;
-  }
 
   function actualFareFromDataset(query){
     if (!dataset.length) return { value: null, used: 0, note: "Dataset missing." };
@@ -389,12 +385,20 @@ dataset = rows.map(r => {
     }
 
     const hour = hourFromTime(el.time.value);
-    const weekend = dayToWeekend(el.day.value);
-    const wUI = String(el.weather.value).toLowerCase();
-    const rain = (wUI === "rain" || wUI === "thunder") ? 1 : 0;
-    const thunder = (wUI === "thunder") ? 1 : 0;
+const weekend = dayToWeekend(el.day.value);
 
-    const features = { ...lastRoute, hour, weekend, rain, thunder, peak };
+const wUIRaw = String(el.weather.value || "Clear").trim();
+const wLower = wUIRaw.toLowerCase();
+const weather =
+  (wLower === "thunder" || wLower === "thunderstorm") ? "Thunder"
+  : (wLower === "rain") ? "Rain"
+  : "Clear";
+
+const rain = (weather === "Rain") ? 1 : 0;
+const thunder = (weather === "Thunder") ? 1 : 0;
+const peak = isPeakHour(hour);
+
+const features = { ...lastRoute, hour, weekend, weather, rain, thunder, peak };
 
     const est = estimateFare(features);
 

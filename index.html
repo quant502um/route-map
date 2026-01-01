@@ -45,6 +45,21 @@
     #mapPanel { padding: 0; overflow:hidden; }
     #map { width: 100%; height: calc(100vh - 70px - 28px); min-height: 520px; }
     @media (max-width: 980px){ #map { height: 520px; } }
+    /* ===== Fix dropdown not clickable (Leaflet overlay issue) ===== */
+.panel {
+  position: relative;
+  z-index: 10;
+}
+
+#mapPanel {
+  position: relative;
+  z-index: 1;
+}
+
+#map {
+  position: relative;
+  z-index: 0;
+}
   </style>
 </head>
 

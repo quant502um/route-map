@@ -202,6 +202,27 @@
     diffText: document.getElementById("diffText"),
     matchInfo: document.getElementById("matchInfo"),
   };
+  // ここにあなたたちの10個の行き先を入れる（表示名と検索用住所）
+const DESTINATIONS = [
+  { label: "KL Sentral", query: "KL Sentral, Kuala Lumpur" },
+  { label: "Sunway Pyramid", query: "Sunway Pyramid, Petaling Jaya" },
+  { label: "Mid Valley Megamall", query: "Mid Valley Megamall, Kuala Lumpur" },
+  // ...残りも同じ形式で追加
+];
+
+// selectに選択肢を入れる
+function populateDestinations(){
+  // 最初の option（Select destination）以外を全部消す
+  el.to.innerHTML = '<option value="">Select destination</option>';
+
+  DESTINATIONS.forEach(d => {
+    const opt = document.createElement("option");
+    opt.value = d.query;     // ★ valueは geocode しやすい住所
+    opt.textContent = d.label; // ★ 表示は短い名前
+    el.to.appendChild(opt);
+  });
+}
+
 
   function setStatus(msg){ el.status.textContent = msg; }
   function rm(x){ return x == null ? "—" : `RM ${Number(x).toFixed(2)}`; }
@@ -394,7 +415,7 @@ dataset = rows.map(r => {
 
   // 3) Day one-hot
   // columns例: Date (Day/Week)_Monday ... etc
-const dayKey = `Date (Day/week)_${features.day}`;
+const dayKey = `Date (Day/Week)_${features.day}`;
   if (dayKey in x) x[dayKey] = 1;
 
   // 4) Destination one-hot（列名に合わせる）
@@ -471,6 +492,8 @@ const featuresForModel = {
   day: el.day.value,            // "Monday" など
   destination: el.to.value.trim() // ここ重要！(※後で選択式にする)
 };
+console.log("featuresForModel", featuresForModel);
+console.log("modelLR", modelLR);
 
 const est = predictFareWithModel(featuresForModel);
 el.estFareText.textContent = (est == null) ? "—" : rm(est);
@@ -496,6 +519,7 @@ el.estFareText.textContent = (est == null) ? "—" : rm(est);
   // Start
 loadDataset();
 loadModel();
+populateDestinations();
 </script>
 </body>
 </html>

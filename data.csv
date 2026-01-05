@@ -1,0 +1,741 @@
+Date (Day/Month),Date (Day/Week),Time,Duration (min),Distance (km),The location of depature,Destination,Weather,Price (RM)
+12/11,Wednesday,15:15,5,1.22,UTMy,Mid Valley Mega Mall,Clear,6
+12/11,Wednesday,15:16,18,8.24,UTMy,Sunway Pyramid Mall,Clear,13.3
+12/11,Wednesday,15:18,18,6.84,UTMy,KLCC Twin Towers,Clear,16
+12/11,Wednesday,15:18,17,5.7,UTMy,1 Mont Kiara,Clear,13.3
+12/11,Wednesday,15:28,15,5.35,UTMy,Lalaport Bukit Bintang,Clear,13
+12/11,Wednesday,15:30,50,40,UTMy,KLIA,Clear,65
+12/11,Wednesday,15:40,20,6.89,UTMy,1 Utama Shopping mall,Clear,16
+12/11,Wednesday,15:36,6,0.86,UTMy,Laurel Residence,Clear,6
+12/11,Wednesday,15:47,21,11,UTMy,Taylor's University,Clear,14
+12/11,Wednesday,15:50,35,13,UTMy,Batu Caves Temple,Clear,34
+12/11,Wednesday,22:22,16,8.24,UTMy,Sunway Pyramid Mall,Clear,21.3
+12/11,Wednesday,22:25,4,1.22,UTMy,Mid Valley Mega Mall,Clear,10.3
+12/11,Wednesday,22:27,16,6.84,UTMy,KLCC Twin Towers,Clear,21.3
+12/11,Wednesday,22:34,13,5.7,UTMy,1 Mont Kiara,Clear,15.3
+12/11,Wednesday,22:35,13,5.35,UTMy,Lalaport Bukit Bintang,Clear,21.3
+12/11,Wednesday,22:37,45,40,UTMy,KLIA,Clear,82.3
+12/11,Wednesday,22:38,15,6.89,UTMy,1 Utama Shopping mall,Clear,27.3
+12/11,Wednesday,22:40,4,0.86,UTMy,Laurel Residence,Clear,12.3
+12/11,Wednesday,22:40,15,11,UTMy,Taylor's University,Clear,26.3
+12/11,Wednesday,22:41,21,13,UTMy,Batu Caves Temple,Clear,41.3
+13/11,Thursday,14:45,5,1.22,UTMy,Mid Valley Mega Mall,Clear,11.33
+13/11,Thursday,14:45,18,8.24,UTMy,Sunway Pyramid Mall,Clear,21.63
+13/11,Thursday,14:50,18,6.84,UTMy,KLCC Twin Towers,Clear,25.75
+13/11,Thursday,14:50,17,5.7,UTMy,1 Mont Kiara,Clear,18.54
+13/11,Thursday,14:52,15,5.35,UTMy,Lalaport Bukit Bintang,Clear,18
+13/11,Thursday,14:52,50,40,UTMy,KLIA,Clear,65.5
+13/11,Thursday,14:55,20,6.89,UTMy,1 Utama Shopping mall,Clear,14
+13/11,Thursday,14:55,6,0.86,UTMy,Laurel Residence,Clear,6
+13/11,Thursday,14:55,21,11,UTMy,Taylor's University,Clear,13
+13/11,Thursday,14:57,35,13,UTMy,Batu Caves Temple,Clear,19
+13/11,Thursday,16:11,6,1.22,UTMy,Mid Valley Mega Mall,Clear,8.3
+13/11,Thursday,22:52,14,8.24,UTMy,Sunway Pyramid Mall,Clear,22
+13/11,Thursday,22:55,16,6.84,UTMy,KLCC Twin Towers,Clear,33
+13/11,Thursday,22:55,13,5.7,UTMy,1 Mont Kiara,Clear,24
+13/11,Thursday,22:55,12,5.35,UTMy,Lalaport Bukit Bintang,Clear,14
+13/11,Thursday,22:56,45,40,UTMy,KLIA,Clear,71
+13/11,Thursday,22:56,15,6.89,UTMy,1 Utama Shopping mall,Clear,13
+13/11,Thursday,22:56,5,0.86,UTMy,Laurel Residence,Clear,5
+13/11,Thursday,22:56,12,11,UTMy,Taylor's University,Clear,11
+13/11,Thursday,22:57,22,13,UTMy,Batu Caves Temple,Clear,20
+14/11,Friday,09:13,17,8.24,UTMy,Sunway Pyramid Mall,Clear,15.3
+14/11,Friday,09:16,5,1.22,UTMy,Mid Valley Mega Mall,Clear,5.3
+14/11,Friday,09:30,18,6.84,UTMy,KLCC Twin Towers,Clear,11
+14/11,Friday,09:30,18,5.7,UTMy,1 Mont Kiara,Clear,13
+14/11,Friday,09:32,17,5.35,UTMy,Lalaport Bukit Bintang,Clear,12
+14/11,Friday,09:32,15,40,UTMy,KLIA,Clear,65
+14/11,Friday,09:33,50,6.89,UTMy,1 Utama Shopping mall,Clear,14
+14/11,Friday,09:33,20,0.86,UTMy,Laurel Residence,Clear,8
+14/11,Friday,09:35,6,11,UTMy,Taylor's University,Clear,14
+14/11,Friday,09:35,21,13,UTMy,Batu Caves Temple,Clear,20
+14/11,Friday,14:42,19,8.24,UTMy,Sunway Pyramid Mall,Thunder ,34
+14/11,Friday,14:42,6,1.22,UTMy,Mid Valley Mega Mall,Thunder,13
+14/11,Friday,14:45,20,6.84,UTMy,KLCC Twin Towers,Thunder,41
+14/11,Friday,14:45,20,5.7,UTMy,1 Mont Kiara,Thunder,29
+14/11,Friday,14:47,22,5.35,UTMy,Lalaport Bukit Bintang,Thunder,33
+14/11,Friday,14:44,51,40,UTMy,KLIA,Thunder,75
+14/11,Friday,14:48,22,6.89,UTMy,1 Utama Shopping mall,Thunder,36
+14/11,Friday,14:49,6,0.86,UTMy,Laurel Residence,Thunder,13
+14/11,Friday,14:46,19,11,UTMy,Taylor's University,Thunder,29
+14/11,Friday,14:50,29,13,UTMy,Batu Caves Temple,Thunder,48
+16/11,Sunday,09:50,17,8.24,UTMy,Sunway Pyramid Mall,Clear,11
+16/11,Sunday,09:52,5,1.22,UTMy,Mid Valley Mega Mall,Clear,6
+16/11,Sunday,09:53,18,6.84,UTMy,KLCC Twin Towers,Clear,13
+16/11,Sunday,09:54,17,5.7,UTMy,1 Mont Kiara,Clear,12
+16/11,Sunday,09:55,15,5.35,UTMy,Lalaport Bukit Bintang,Clear,12
+16/11,Sunday,09:56,50,40,UTMy,KLIA,Clear,65
+16/11,Sunday,09:57,20,6.89,UTMy,1 Utama Shopping mall,Clear,13
+16/11,Sunday,09:58,6,0.86,UTMy,Laurel Residence,Clear,5
+16/11,Sunday,09:59,20,11,UTMy,Taylor's University,Clear,11
+16/11,Sunday,10:00,20,13,UTMy,Batu Caves Temple,Clear,20
+16/11,Sunday,19:55,19,8.24,UTMy,Sunway Pyramid Mall,Rain,34
+16/11,Sunday,19:56,6,1.22,UTMy,Mid Valley Mega Mall,Rain,15
+16/11,Sunday,19:57,20,6.84,UTMy,KLCC Twin Towers,Rain,34
+16/11,Sunday,19:58,22,5.7,UTMy,1 Mont Kiara,Rain,31
+16/11,Sunday,19:59,51,5.35,UTMy,Lalaport Bukit Bintang,Rain,33
+16/11,Sunday,19:59,22,40,UTMy,KLIA,Rain,82
+16/11,Sunday,19:59,6,6.89,UTMy,1 Utama Shopping mall,Rain,35
+16/11,Sunday,20:00,19,0.86,UTMy,Laurel Residence,Rain,13
+16/11,Sunday,20:00,29,11,UTMy,Taylor's University,Rain,30
+16/11,Sunday,20:00,33,13,UTMy,Batu Caves Temple,Rain,43
+17/11,Monday,16:50,17,8.24,UTMy,Sunway Pyramid Mall,Thunder,35.3
+17/11,Monday,16:51,5,1.22,UTMy,Mid Valley Mega Mall,Thunder,15.3
+17/11,Monday,16:52,18,6.84,UTMy,KLCC Twin Towers,Thunder,43.3
+17/11,Monday,16:53,17,5.7,UTMy,1 Mont Kiara,Thunder,33.3
+17/11,Monday,16:54,15,5.35,UTMy,Lalaport Bukit Bintang,Thunder,34.3
+17/11,Monday,16:55,50,40,UTMy,KLIA,Thunder,75.3
+17/11,Monday,16:56,20,6.89,UTMy,1 Utama Shopping mall,Thunder,35.3
+17/11,Monday,16:57,4,0.86,UTMy,Laurel Residence,Thunder,13.3
+17/11,Moday,16:58,15,11,UTMy,Taylor's University,Thunder,34.3
+17/11,Monday,16:59,51,13,UTMy,Batu Caves Temple,Thunder,58.3
+19/11,Wednesday,14:16,17,8.24,UTMy,Sunway Pyramid Mall,Clear,19.3
+19/11,Wednesday,14:16,5,1.22,UTMy,Mid Valley Mega Mall,Clear,9.3
+19/11,Wednesday,14:17,17,6.84,UTMy,KLCC Twin Towers,Clear,24.3
+19/11,Wednesday,14:17,16,5.7,UTMy,1 Mont Kiara,Clear,21.3
+19/11,Wednesday,14:18,17,5.35,UTMy,Lalaport Bukit Bintang,Clear,22.3
+19/11,Wednesday,14:18,49,40,UTMy,KLIA,Clear,75.3
+19/11,Wednesday,14:19,17,6.89,UTMy,1 Utama Shopping mall,Clear,23.3
+19/11,Wednesday,14:19,7,0.86,UTMy,Laurel Residence,Clear,10.3
+19/11,Wednesday,14:19,18,11,UTMy,Taylor's University,Clear,24.3
+19/11,Wednesday,14:20,24,13,UTMy,Batu Caves Temple,Clear,36.3
+23/11,Sunday,14:40,17,8.24,UTMy,Sunway Pyramid Mall,Rain,16
+23/11,Sunday,14:40,5,1.22,UTMy,Mid Valley Mega Mall,Rain,9
+23/11,Sunday,14:41,17,6.84,UTMy,KLCC Twin Towers,Rain,21
+23/11,Sunday,14:41,15,5.7,UTMy,1 Mont Kiara,Rain,18
+23/11,Sunday,14:42,17,5.35,UTMy,Lalaport Bukit Bintang,Rain,21
+23/11,Sunday,14:42,49,40,UTMy,KLIA,Rain,66
+23/11,Sunday,14:43,17,6.89,UTMy,1 Utama Shopping mall,Rain,22
+23/11,Sunday,14:43,7,0.86,UTMy,Laurel Residence,Rain,9
+23/11,Sunday,14:44,18,11,UTMy,Taylor's University,Rain,17
+23/11,Sunday,14:44,24,13,UTMy,Batu Caves Temple,Rain,26
+23/11,Sunday,22:15,18,8.24,UTMy,Sunway Pyramid Mall,Rain,33
+23/11,Sunday,22:15,7,1.22,UTMy,Mid Valley Mega Mall,Rain,15
+23/11,Sunday,22:16,19,6.84,UTMy,KLCC Twin Towers,Rain,43
+23/11,Sunday,22:16,15,5.7,UTMy,1 Mont Kiara,Rain,32
+23/11,Sunday,22:17,18,5.35,UTMy,Lalaport Bukit Bintang,Rain,33
+23/11,Sunday,22:18,53,40,UTMy,KLIA,Rain,82
+23/11,Sunday,22:18,19,6.89,UTMy,1 Utama Shopping mall,Rain,35
+23/11,Sunday,22:19,5,0.86,UTMy,Laurel Residence,Rain,14
+23/11,Sunday,22:19,17,11,UTMy,Taylor's University,Rain,33
+23/11,Sunday,22:20,27,13,UTMy,Batu Caves Temple,Rain,46
+24/11,Monday,12:19,18,8.24,UTMy,Sunway Pyramid Mall,Rain,14.3
+24/11,Monday,12:21,6,1.22,UTMy,Mid Valley Mega Mall,Rain,6.3
+24/11,Monday,12:23,19,6.84,UTMy,KLCC Twin Towers,Rain,16.3
+24/11,Monday,12:27,17,5.7,UTMy,1 Mont Kiara,Rain,13.3
+24/11,Monday,12:28,17,5.35,UTMy,Lalaport Bukit Bintang,Rain,13.3
+24/11,Monday,14:28,51,40,UTMy,KLIA,Rain,75.3
+24/11,Monday,14:28,17,6.89,UTMy,1 Utama Shopping mall,Rain,25.3
+24/11,Monday,14:28,7,0.86,UTMy,Laurel Residence,Rain,10.3
+24/11,Monday,14:29,19,11,UTMy,Taylor's University,Rain,24.3
+24/11,Monday,14:29,27,13,UTMy,Batu Caves Temple,Rain,37.3
+27/11,Thursday,15:18,18,8.24,UTMy,Sunway Pyramid Mall,Rain,19.3
+27/11,Thursday,15:18,7,1.22,UTMy,Mid Valley Mega Mall,Rain,9.3
+27/11,Thursday,15:19,19,6.84,UTMy,KLCC Twin Towers,Rain,22.3
+27/11,Thursday,15:19,15,5.7,UTMy,1 Mont Kiara,Rain,19.3
+27/11,Thursday,15:20,18,5.35,UTMy,Lalaport Bukit Bintang,Rain,20.3
+27/11,Thursday,15:20,53,40,UTMy,KLIA,Rain,73.3
+27/11,Thursday,15:21,19,6.89,UTMy,1 Utama Shopping mall,Rain,18.3
+27/11,Thursday,15:21,5,0.86,UTMy,Laurel Residence,Rain,7.3
+27/11,Thursday,15:22,17,11,UTMy,Taylor's University,Rain,18.3
+27/11,Thursday,15:22,27,13,UTMy,Batu Caves Temple,Rain,25.3
+30/11,Sunday,00:55,17,8.24,UTMy,Sunway P,Clear,12
+30/11,Sunday,00:56,5,1.22,UTMy,Mid Valley,Clear,8
+30/11,Sunday,00:57,17,6.84,UTMy,KLCC,Clear,17
+30/11,Sunday,00:58,16,5.7,UTMy,1 Mont,Clear,14
+30/11,Sunday,00:59,17,5.35,UTMy,Lalaport,Clear,13
+30/11,Sunday,01:00,49,40,UTMy,KLIA,Clear,71
+30/11,Sunday,01:01,17,6.89,UTMy,1 Utama,Clear,15
+30/11,Sunday,01:02,7,0.86,UTMy,Laurel,Clear,7
+30/11,Sunday,01:03,18,11,UTMy,Taylor's,Clear,13
+30/11,Sunday,01:04,24,13,UTMy,Batu Caves,Clear,22
+30/11,Sunday,15:10,19,8.24,UTMy,Sunway Pyramid Mall,Clear,33.3
+30/11,Sunday,15:10,7,1.22,UTMy,Mid Valley Mega Mall,Clear,15.3
+30/11,Sunday,15:11,19,6.84,UTMy,KLCC Twin Towers,Clear,33.3
+30/11,Sunday,15:11,15,5.7,UTMy,1 Mont Kiara,Clear,25.3
+30/11,Sunday,15:11,18,5.35,UTMy,Lalaport Bukit Bintang,Clear,27.3
+30/11,Sunday,15:12,53,40,UTMy,KLIA,Clear,75.3
+30/11,Sunday,15:13,19,6.89,UTMy,1 Utama Shopping mall,Clear,24.3
+30/11,Sunday,15:13,5,0.86,UTMy,Laurel Residence,Clear,9.3
+30/11,Sunday,15:14,17,11,UTMy,Taylor's University,Clear,22.3
+30/11,Sunday,15:14,27,13,UTMy,Batu Caves Temple,Clear,32.3
+30/11,Sunday,22:26,18,8.24,UTMy,Sunway Pyramid Mall,Clear,33
+30/11,Sunday,22:26,7,1.22,UTMy,Mid Valley Mega Mall,Clear,14
+30/11,Sunday,22:27,15,6.84,UTMy,KLCC Twin Towers,Clear,41
+30/11,Sunday,22:27,18,5.7,UTMy,1 Mont Kiara,Clear,30
+30/11,Sunday,22:28,17,5.35,UTMy,Lalaport Bukit Bintang,Clear,30
+30/11,Sunday,22:28,53,40,UTMy,KLIA,Clear,82
+30/11,Sunday,22:29,17,6.89,UTMy,1 Utama Shopping mall,Clear,34
+30/11,Sunday,22:29,5,0.86,UTMy,Laurel Residence,Clear,13
+30/11,Sunday,22:30,27,11,UTMy,Taylor's University,Clear,34
+30/11,Sunday,22:30,18,13,UTMy,Batu Caves Temple,Clear,47
+1/12,Monday,14:55,17,8.24,UTMy,Sunway Pyramid Mall,Clear,21
+1/12,Monday,14:55,5,1.22,UTMy,Mid Valley Mega Mall,Clear,8
+1/12,Monday,14:55,17,6.84,UTMy,KLCC Twin Towers,Clear,18
+1/12,Monday,14:56,17,5.7,UTMy,1 Mont Kiara,Clear,16
+1/12,Monday,14:56,15,5.35,UTMy,Lalaport Bukit Bintang,Clear,20
+1/12,Monday,14:57,51,40,UTMy,KLIA,Clear,73
+1/12,Monday,14:58,19,6.89,UTMy,1 Utama Shopping mall,Clear,18
+1/12,Monday,14:58,5,0.86,UTMy,Laurel Residence,Clear,8
+1/12,Monday,14:59,17,11,UTMy,Taylor's University,Clear,18
+1/12,Monday,14:59,28,13,UTMy,Batu Caves Temple,Clear,31
+1/12,Monday,22:27,13,8.24,UTMy,Sunway Pyramid Mall,Clear,16
+1/12,Monday,22:29,5,1.22,UTMy,Mid Valley Mega Mall,Clear,11
+1/12,Monday,22:31,15,6.84,UTMy,KLCC Twin Towers,Clear,32
+1/12,Monday,22:32,18,5.7,UTMy,1 Mont Kiara,Clear,23
+1/12,Monday,22:33,12,5.35,UTMy,Lalaport Bukit Bintang,Clear,24
+1/12,Monday,22:34,46,40,UTMy,KLIA,Clear,82
+1/12,Monday,22:35,17,6.89,UTMy,1 Utama Shopping mall,Clear,28
+1/12,Monday,22:36,5,0.86,UTMy,Laurel Residence,Clear,11
+1/12,Monday,22:36,12,11,UTMy,Taylor's University,Clear,24
+1/12,Monday,22:37,21,13,UTMy,Batu Caves Temple,Clear,37
+2/12,Tuesday,02:06,11,8.24,UTMy,Sunway Pyramid Mall,Clear,12
+2/12,Tuesday,02:07,4,1.22,UTMy,Mid Valley Mega Mall,Clear,7
+2/12,Tuesday,02:08,13,6.84,UTMy,KLCC Twin Towers,Clear,16
+2/12,Tuesday,02:09,16,5.7,UTMy,1 Mont Kiara,Clear,13
+2/12,Tuesday,02:10,11,5.35,UTMy,Lalaport Bukit Bintang,Clear,13
+2/12,Tuesday,02:11,45,40,UTMy,KLIA,Clear,65
+2/12,Tuesday,02:12,14,6.89,UTMy,1 Utama Shopping mall,Clear,14
+2/12,Tuesday,02:13,4,0.86,UTMy,Laurel Residence,Clear,7
+2/12,Tuesday,02:14,10,11,UTMy,Taylor's University,Clear,13
+2/12,Tuesday,02:16,18,13,UTMy,Batu Caves Temple,Clear,20
+2/12,Tuesday,16:34,22,8.24,UTMy,Sunway Pyramid Mall,Clear,24
+2/12,Tuesday,16:35,6,1.22,UTMy,Mid Valley Mega Mall,Clear,10
+2/12,Tuesday,16:35,20,6.84,UTMy,KLCC Twin Towers,Clear,23
+2/12,Tuesday,16:36,17,5.7,UTMy,1 Mont Kiara,Clear,20
+2/12,Tuesday,16:36,16,5.35,UTMy,Lalaport Bukit Bintang,Clear,21
+2/12,Tuesday,16:37,59,40,UTMy,KLIA,Clear,75
+2/12,Tuesday,16:37,24,6.89,UTMy,1 Utama Shopping mall,Clear,20
+2/12,Tuesday,16:38,6,0.86,UTMy,Laurel Residence,Clear,7
+2/12,Tuesday,16:40,25,11,UTMy,Taylor's University,Clear,16
+2/12,Tuesday,16:42,34,13,UTMy,Batu Caves Temple,Clear,26
+3/12,Wednesday,08:54,18,8.24,UTMy,Sunway Pyramid Mall,Clear,32
+3/12,Wednesday,08:55,5,1.22,UTMy,Mid Valley Mega Mall,Clear,12.3
+3/12,Wednesday,08:55,17,6.84,UTMy,KLCC Twin Towers,Clear,28
+3/12,Wednesday,08:56,16,5.7,UTMy,1 Mont Kiara,Clear,26
+3/12,Wednesday,08:57,14,5.35,UTMy,Lalaport Bukit Bintang,Clear,25
+3/12,Wednesday,08:57,45,40,UTMy,KLIA,Clear,75.3
+3/12,Wednesday,08:59,18,6.89,UTMy,1 Utama Shopping mall,Clear,23.3
+3/12,Wednesday,09:02,6,0.86,UTMy,Laurel Residence,Clear,15
+3/12,Wednesday,09:03,16,11,UTMy,Taylor's University,Clear,28
+3/12,Wednesday,09:05,24,13,UTMy,Batu Caves Temple,Clear,32
+3/12,Wednesday,14:29,17,8.24,UTMy,Sunway Pyramid Mall,Clear,18
+3/12,Wednesday,14:33,5,1.22,UTMy,Mid Valley Mega Mall,Clear ,6
+3/12,Wednesday,14:33,12,6.84,UTMy,KLCC Twin Towers,Clear ,18
+3/12,Wednesday,14:34,17,5.7,UTMy,1 Mont Kiara,Clear ,13
+3/12,Wednesday,14:34,16,5.35,UTMy,Lalaport Bukit Bintang,Clear ,13
+3/12,Wednesday,14:34,48,40,UTMy,KLIA,Clear ,65
+3/12,Wednesday,14:35,19,6.89,UTMy,1 Utama Shopping mall,Clear ,14
+3/12,Wednesday,14:35,5,0.86,UTMy,Laurel Residence,Clear ,5
+3/12,Wednesday,14:35,17,11,UTMy,Taylor's University,Clear ,13
+3/12,Wednesday,14:35,25,13,UTMy,Batu Caves Temple,Clear ,19
+3/12,Wednesday,16:50,33,8.24,UTMy,Sunway Pyramid Mall,Clear ,28
+3/12,Wednesday,16:51,10,1.22,UTMy,Mid Valley Mega Mall,Clear,16
+3/12,Wednesday,16:52,37,6.84,UTMy,KLCC Twin Towers,Clear,40
+3/12,Wednesday,16:54,47,5.7,UTMy,1 Mont Kiara,Clear,34
+3/12,Wednesday,16:55,32,5.35,UTMy,Lalaport Bukit Bintang,Clear,32
+3/12,Wednesday,16:58,84,40,UTMy,KLIA,Clear,75
+3/12,Wednesday,16:59,45,6.89,UTMy,1 Utama Shopping mall,Clear,33
+3/12,Wednesday,17:04,16,0.86,UTMy,Laurel Residence,Clear ,12
+3/12,Wednesday,17:05,39,11,UTMy,Taylor's University,Clear,32
+3/12,Wednesday,17:06,60,13,UTMy,Batu Caves Temple,Clear,44
+3/12,Wednesday,18:46,38,8.24,UTMy,Sunway Pyramid Mall,Rain,45
+3/12,Wednesday,18:46,17,1.22,UTMy,Mid Valley Mega Mall,Rain,18
+3/12,Wednesday,18:47,42,6.84,UTMy,KLCC Twin Towers,Rain,55
+3/12,Wednesday,18:47,48,5.7,UTMy,1 Mont Kiara,Rain,45
+3/12,Wednesday,18:47,36,5.35,UTMy,Lalaport Bukit Bintang,Rain,43
+3/12,Wednesday,18:48,84,40,UTMy,KLIA,Rain,82
+3/12,Wednesday,18:48,48,6.89,UTMy,1 Utama Shopping mall,Rain,46
+3/12,Wednesday,18:49,19,0.86,UTMy,Laurel Residence,Rain,18
+3/12,Wednesday,18:49,39,11,UTMy,Taylor's University,Rain,45
+3/12,Wednesday,18:50,56,13,UTMy,Batu Caves Temple,Rain,63
+4/12,Thursday,04:46,10,8.24,UTMy,Sunway Pyramid Mall,Rain,12
+4/12,Thursday,04:47,4,1.22,UTMy,Mid Valley Mega Mall,Rain,7
+4/12,Thursday,04:48,14,6.84,UTMy,KLCC Twin Towers,Rain,16
+4/12,Thursday,04:49,15,5.7,UTMy,1 Mont Kiara,Rain,13
+4/12,Thursday,04:50,16,5.35,UTMy,Lalaport Bukit Bintang,Rain,13
+4/12,Thursday,04:51,46,40,UTMy,KLIA,Rain,65
+4/12,Thursday,04:52,14,6.89,UTMy,1 Utama Shopping mall,Rain,13
+4/12,Thursday,04:53,4,0.86,UTMy,Laurel Residence,Rain,7
+4/12,Thursday,04:54,10,11,UTMy,Taylor's University,Rain,13
+4/12,Thursday,04:55,17,13,UTMy,Batu Caves Temple,Rain,20
+4/12,Thursday,11:30,17,8.24,UTMy,Sunway Pyramid Mall,Clear,12.3
+4/12,Thursday,11:32,5,1.22,UTMy,Mid Valley Mega Mall,Clear,6.3
+4/12,Thursday,11:33,17,6.84,UTMy,KLCC Twin Towers,Clear,16.3
+4/12,Thursday,11:35,16,5.7,UTMy,1 Mont Kiara,Clear,13.3
+4/12,Thursday,11:35,14,5.35,UTMy,Lalaport Bukit Bintang,Clear,13.3
+4/12,Thursday,11:36,44,40,UTMy,KLIA,Clear,65.3
+4/12,Thursday,11:37,19,6.89,UTMy,1 Utama Shopping mall,Clear,14.3
+4/12,Thursday,11:38,6,0.86,UTMy,Laurel Residence,Clear,6.3
+4/12,Thursday,11:39,17,11,UTMy,Taylor's University,Clear,12.3
+4/12,Thursday,11:39,25,13,UTMy,Batu Caves Temple,Clear,20.3
+4/12,Thursday,16:54,28,8.24,UTMy,Sunway Pyramid Mall,Clear,30
+4/12,Thursday,16:55,7,1.22,UTMy,Mid Valley Mega Mall,Clear,12
+4/12,Thursday,16:56,25,6.84,UTMy,KLCC Twin Towers,Clear,35
+4/12,Thursday,16:57,30,5.7,UTMy,1 Mont Kiara,Clear,27
+4/12,Thursday,16:57,23,5.35,UTMy,Lalaport Bukit Bintang,Clear,26
+4/12,Thursday,16:58,70,40,UTMy,KLIA,Clear,75
+4/12,Thursday,16:59,28,6.89,UTMy,1 Utama Shopping mall,Clear,25
+4/12,Thursday,17:00,7,0.86,UTMy,Laurel Residence,Clear,11
+4/12,Thursday,17:01,32,11,UTMy,Taylor's University,Clear,27
+4/12,Thursday,17:01,40,13,UTMy,Batu Caves Temple,Clear,37
+5/12,Friday,13:08,20,8.24,UTMy,Sunway Pyramid Mall,Clear,15.3
+5/12,Friday,13:08,6,1.22,UTMy,Mid Valley Mega Mall,Clear,7.3
+5/12,Friday,13:09,19,6.84,UTMy,KLCC Twin Towers,Clear,20.3
+5/12,Friday,13:10,21,5.7,UTMy,1 Mont Kiara,Clear,16.3
+5/12,Friday,13:11,17,5.35,UTMy,Lalaport Bukit Bintang,Clear,15.3
+5/12,Friday,13:12,50,40,UTMy,KLIA,Clear,65.3
+5/12,Friday,13:12,20,6.89,UTMy,1 Utama Shopping mall,Clear,16.3
+5/12,Friday,13:13,6,0.86,UTMy,Laurel Residence,Clear,6.3
+5/12,Friday,13:14,19,11,UTMy,Taylor's University,Clear,17.3
+5/12,Friday,13:15,26,13,UTMy,Batu Caves Temple,Clear,22.3
+5/12,Friday,15:33,20,8.24,UTMy,Sunway Pyramid Mall,Clear ,27
+5/12,Friday,15:34,5,1.22,UTMy,Mid Valley Mega Mall,Clear,11
+5/12,Friday,15:35,20,6.84,UTMy,KLCC Twin Towers,Clear,33
+5/12,Friday,15:36,29,5.7,UTMy,1 Mont Kiara,Clear,28
+5/12,Friday,15:37,20,5.35,UTMy,Lalaport Bukit Bintang,Clear,２９
+5/12,Friday,15:38,54,40,UTMy,KLIA,Clear,75
+5/12,Friday,15:39,21,6.89,UTMy,1 Utama Shopping mall,Clear,32
+5/12,Friday,15:40,6,0.86,UTMy,Laurel Residence,Clear,11
+5/12,Friday,15:40,19,11,UTMy,Taylor's University,Clear,26
+5/12,Friday,15:41,30,13,UTMy,Batu Caves Temple,Clear,44
+5/12,Friday,16:42,34,8.24,UTMy,Sunway Pyramid Mall,Thunder ,45
+5/12,Friday,16:42,10,1.22,UTMy,Mid Valley Mega Mall,Thunder,17
+5/12,Friday,16:43,34,6.84,UTMy,KLCC Twin Towers,Thunder,52
+5/12,Friday,16:44,36,5.7,UTMy,1 Mont Kiara,Thunder,43
+5/12,Friday,16:44,32,5.35,UTMy,Lalaport Bukit Bintang,Thunder,43
+5/12,Friday,16:45,88,40,UTMy,KLIA,Thunder,75
+5/12,Friday,16:45,34,6.89,UTMy,1 Utama Shopping mall,Thunder,44
+5/12,Friday,16:46,11,0.86,UTMy,Laurel Residence,Thunder,16
+5/12,Friday,16:47,34,11,UTMy,Taylor's University,Thunder,46
+5/12,Friday,16:48,54,13,UTMy,Batu Caves Temple,Thunder,67
+6/12,Saturday,10:36,17,8.24,UTMy,Sunway Pyramid Mall,Clear,13.3
+6/12,Saturday,10:38,5,1.22,UTMy,Mid Valley Mega Mall,Clear,6.3
+6/12,Saturday,10:38,17,6.84,UTMy,KLCC Twin Towers,Clear,14.3
+6/12,Saturday,10:39,15,5.7,UTMy,1 Mont Kiara,Clear,13.3
+6/12,Saturday,10:40,14,5.35,UTMy,Lalaport Bukit Bintang,Clear,12.3
+6/12,Saturday,10:40,53,40,UTMy,KLIA,Clear,65.3
+6/12,Saturday,10:41,19,6.89,UTMy,1 Utama Shopping mall,Clear,14.3
+6/12,Saturday,10:41,5,0.86,UTMy,Laurel Residence,Clear,5.3
+6/12,Saturday,10:42,18,11,UTMy,Taylor's University,Clear,13.3
+6/12,Saturday,10:43,30,13,UTMy,Batu Caves Temple,Clear,20.3
+6/12,Saturday,14:53,22,8.24,UTMy,Sunway Pyramid Mall,Clear,16
+6/12,Saturday,14:54,6,1.22,UTMy,Mid Valley Mega Mall,Clear,7
+6/12,Saturday,14:54,24,6.84,UTMy,KLCC Twin Towers,Clear,18
+6/12,Saturday,14:55,24,5.7,UTMy,1 Mont Kiara,Clear,16
+6/12,Saturday,14:55,21,5.35,UTMy,Lalaport Bukit Bintang,Clear,13
+6/12,Saturday,14:56,69,40,UTMy,KLIA,Clear ,65
+6/12,Saturday,14:56,20,6.89,UTMy,1 Utama Shopping mall,Clear,15
+6/12,Saturday,14:57,5,0.86,UTMy,Laurel Residence,Clear,6
+6/12,Saturday,14:58,22,11,UTMy,Taylor's University,Clear,16
+6/12,Saturday,15:00,33,13,UTMy,Batu Caves Temple,Clear,22
+6/12,Saturday,22:02,16,8.24,UTMy,Sunway Pyramid Mall,Clear,32
+6/12,Saturday,22:03,5,1.22,UTMy,Mid Valley Mega Mall,Clear,14
+6/12,Saturday,22:04,19,6.84,UTMy,KLCC Twin Towers,Clear,49
+6/12,Saturday,22:04,20,5.7,UTMy,1 Mont Kiara,Clear,32
+6/12,Saturday,22:05,20,5.35,UTMy,Lalaport Bukit Bintang,Clear,32
+6/12,Saturday,22:05,51,40,UTMy,KLIA,Clear,82
+6/12,Saturday,22:06,18,6.89,UTMy,1 Utama Shopping mall,Clear,36
+6/12,Saturday,22:06,5,0.86,UTMy,Laurel Residence,Clear,14
+6/12,Saturday,22:07,18,11,UTMy,Taylor's University,Clear,33
+6/12,Saturday,22:08,25,13,UTMy,Batu Caves Temple,Clear,50
+7/12,Sunday,21:43,15,8.24,UTMy,Sunway Pyramid Mall,Clear,32
+7/12,Sunday,21:43,5,1.22,UTMy,Mid Valley Mega Mall,Clear,15
+7/12,Sunday,21:44,17,6.84,UTMy,KLCC Twin Towers,Clear,40
+7/12,Sunday,21:44,19,5.7,UTMy,1 Mont Kiara,Clear,33
+7/12,Sunday,21:45,15,5.35,UTMy,Lalaport Bukit Bintang,Clear,29
+7/12,Sunday,21:45,50,40,UTMy,KLIA,Clear,82
+7/12,Sunday,21:46,19,6.89,UTMy,1 Utama Shopping mall,Clear,34
+7/12,Sunday,21:47,5,0.86,UTMy,Laurel Residence,Clear,13
+７/12,Sunday,21:48,17,11,UTMy,Taylor's University,Clear,32
+7/12,Sunday,21:49,23,13,UTMy,Batu Caves Temple,Clear,46
+8/12,Monday,10:08,16,8.24,UTMy,Sunway Pyramid Mall,Clear,12
+8/12,Monday,10:10,6,1.22,UTMy,Mid Valley Mega Mall,Clear,6
+8/12,Monday,10:11,18,6.84,UTMy,KLCC Twin Towers,Clear,14
+8/12,Monday,10:13,23,5.7,UTMy,1 Mont Kiara,Clear,10
+8/12,Monday,10:15,14,5.35,UTMy,Lalaport Bukit Bintang,Clear,13
+8/12,Monday,10:18,50,40,UTMy,KLIA,Clear,65
+8/12,Monday,10:19,19,6.89,UTMy,1 Utama Shopping mall,Clear,13
+8/12,Monday,10:21,8,0.86,UTMy,Laurel Residence,Clear,6
+8/12,Monday,10:22,19,11,UTMy,Taylor's University,Clear,12
+8/12,Monday,10:25,25,13,UTMy,Batu Caves Temple,Clear,16
+8/12,Monday,16:55,26,8.24,UTMy,Sunway Pyramid Mall,Clear ,18
+8/12,Monday,16:57,9,1.22,UTMy,Mid Valley Mega Mall,Clear ,8
+8/12,Monday,16:59,24,6.84,UTMy,KLCC Twin Towers,Clear ,21
+8/12,Monday,17:01,29,5.7,UTMy,1 Mont Kiara,Clear ,19
+8/12,Monday,17:01,23,5.35,UTMy,Lalaport Bukit Bintang,Clear ,20
+8/12,Monday,17:02,70,40,UTMy,KLIA,Clear ,75
+8/12,Monday,17:03,27,6.89,UTMy,1 Utama Shopping mall,Clear ,22
+8/12,Monday,17:03,7,0.86,UTMy,Laurel Residence,Clear,9
+8/12,Monday,17:04,28,11,UTMy,Taylor's University,Clear,23
+8/12,Monday,17:05,40,13,UTMy,Batu Caves Temple,Clear,30
+8/12,Monday,23:24,12,8.24,UTMy,Sunway Pyramid Mall,Clear,10
+8/12,Monday,23:25,4,1.22,UTMy,Mid Valley Mega Mall,Clear,6
+8/12,Monday,23:26,14,6.84,UTMy,KLCC Twin Towers,Clear,11
+8/12,Monday,23:27,18,5.7,UTMy,1 Mont Kiara,Clear,11
+8/12,Monday,23:28,11,5.35,UTMy,Lalaport Bukit Bintang,Clear,11
+8/12,Monday,23:29,45,40,UTMy,KLIA,Clear,71
+8/12,Monday,23:30,15,6.89,UTMy,1 Utama Shopping mall,Clear,12
+8/12,Monday,23:30,5,0.86,UTMy,Laurel Residence,Clear,5
+8/12,Monday,23:31,11,11,UTMy,Taylor's University,Clear,11
+8/12,Monday,23:31,19,13,UTMy,Batu Caves Temple,Clear,18
+9/12,Tuesday,17:55,33,8.24,UTMy,Sunway Pyramid Mall,Clear,19
+9/12,Tuesday,17:56,14,1.22,UTMy,Mid Valley Mega Mall,Clear ,9
+9/12,Tuesday,17:57,36,6.84,UTMy,KLCC Twin Towers,Clear ,24
+9/12,Tuesday,17:58,37,5.7,UTMy,1 Mont Kiara,Clear,20
+9/12,Tuesday,17:59,32,5.35,UTMy,Lalaport Bukit Bintang,Clear ,18
+9/12,Tuesday,18:00,80,40,UTMy,KLIA,Clear,65
+9/12,Tuesday,18:01,38,6.89,UTMy,1 Utama Shopping mall,Clear ,20
+9/12,Tuesday,18:02,19,0.86,UTMy,Laurel Residence,Clear ,7
+9/12,Tuesday,18:03,36,11,UTMy,Taylor's University,Clear ,22
+9/12,Tuesday,18:05,50,13,UTMy,Batu Caves Temple,Clear ,31
+10/12,Wednesday,09:01,17,8.24,UTMy,Sunway Pyramid Mall,Clear,16
+10/12,Wednesday,09:01,5,1.22,UTMy,Mid Valley Mega Mall,Clear,6
+10/12,Wednesday,09:01,17,6.84,UTMy,KLCC Twin Towers,Clear,17
+10/12,Wednesday,09:02,17,5.7,UTMy,1 Mont Kiara,Clear,13
+10/12,Wednesday,09:03,17,5.35,UTMy,Lalaport Bukit Bintang,Clear,12
+10/12,Wednesday,09:04,46,40,UTMy,KLIA,Clear,65
+10/12,Wednesday,09:04,19,6.89,UTMy,1 Utama Shopping mall,Clear,11
+10/12,Wednesday,09:05,8,0.86,UTMy,Laurel Residence,Clear,8
+10/12,Wednesday,09:05,16,11,UTMy,Taylor's University,Clear,18
+10/12,Wednesday,09:06,24,13,UTMy,Batu Caves Temple,Clear,21
+10/12,Wednesday,14:23,18,8.24,UTMy,Sunway Pyramid Mall,Clear,34
+10/12,Wednesday,14:24,6,1.22,UTMy,Mid Valley Mega Mall,Clear,13
+10/12,Wednesday,14:25,17,6.84,UTMy,KLCC Twin Towers,Clear,40
+10/12,Wednesday,14:26,24,5.7,UTMy,1 Mont Kiara,Clear,32
+10/12,Wednesday,14:27,16,5.35,UTMy,Lalaport Bukit Bintang,Clear,31
+10/12,Wednesday,14:28,50,40,UTMy,KLIA,Clear,75
+10/12,Wednesday,14:29,20,6.89,UTMy,1 Utama Shopping mall,Clear,30
+10/12,Wednesday,14:30,6,0.86,UTMy,Laurel Residence,Clear,12
+10/12,Wednesday,14:31,19,11,UTMy,Taylor's University,Clear,30
+10/12,Wednesday,14:32,28,13,UTMy,Batu Caves Temple,Clear,44
+10/12,Wednesday,16:10,21,8.24,UTMy,Sunway Pyramid Mall,Clear,14
+10/12,Wednesday,16:10,5,1.22,UTMy,Mid Valley Mega Mall,Clear,9
+10/12,Wednesday,16:11,18,6.84,UTMy,KLCC Twin Towers,Clear,22
+10/12,Wednesday,16:11,27,5.7,UTMy,1 Mont Kiara,Clear,19
+10/12,Wednesday,16:12,14,5.35,UTMy,Lalaport Bukit Bintang,Clear,18
+10/12,Wednesday,16:12,54,40,UTMy,KLIA,Clear,70
+10/12,Wednesday,16:13,21,6.89,UTMy,1 Utama Shopping mall,Clear,17
+10/12,Wednesday,16:14,5,0.86,UTMy,Laurel Residence,Clear,7
+10/12,Wednesday,16:15,24,11,UTMy,Taylor's University,Clear,17
+10/12,Wednesday,16:16,31,13,UTMy,Batu Caves Temple,Clear,22
+10/12,Wednesday,16:49,26,8.24,UTMy,Sunway Pyramid Mall,Clear,27
+10/12,Wednesday,16:49,8,1.22,UTMy,Mid Valley Mega Mall,Clear,11
+10/12,Wednesday,16:50,24,6.84,UTMy,KLCC Twin Towers,Clear,26
+10/12,Wednesday,16:51,32,5.7,UTMy,1 Mont Kiara,Clear,23
+10/12,Wednesday,16:51,23,5.35,UTMy,Lalaport Bukit Bintang,Clear,21
+10/12,Wednesday,16:52,73,40,UTMy,KLIA,Clear,75
+10/12,Wednesday,16:53,28,6.89,UTMy,1 Utama Shopping mall,Clear,24
+10/12,Wednesday,16:53,7,0.86,UTMy,Laurel Residence,Clear,8
+10/12,Wednesday,16:54,31,11,UTMy,Taylor's University,Clear,24
+10/12,Wednesday,16:55,38,13,UTMy,Batu Caves Temple,Clear,33
+10/12,Wednesday,22:55,15,8.24,UTMy,Sunway Pyramid Mall,Clear,18
+10/12,Wednesday,22:55,4,1.22,UTMy,Mid Valley Mega Mall,Clear,11
+10/12,Wednesday,22:56,17,6.84,UTMy,KLCC Twin Towers,Clear,22
+10/12,Wednesday,22:56,18,5.7,UTMy,1 Mont Kiara,Clear,20
+10/12,Wednesday,22:57,13,5.35,UTMy,Lalaport Bukit Bintang,Clear,20
+10/12,Wednesday,22:57,47,40,UTMy,KLIA,Clear,82
+10/12,Wednesday,22:58,17,6.89,UTMy,1 Utama Shopping mall,Clear,19
+10/12,Wednesday,22:58,5,0.86,UTMy,Laurel Residence,Clear,9
+10/12,Wednesday,22:59,14,11,UTMy,Taylor's University,Clear,18
+10/12,Wednesday,23:00,22,13,UTMy,Batu Caves Temple,Clear,27
+11/12,Thursday,16:17,20,8.24,UTMy,Sunway Pyramid Mall,Clear,21
+11/12,Thursday,16:17,8,1.22,UTMy,Mid Valley Mega Mall,Clear,10
+11/12,Thursday,16:18,19,6.84,UTMy,KLCC Twin Towers,Clear,24
+11/12,Thursday,16:18,27,5.7,UTMy,1 Mont Kiara,Clear,20
+11/12,Thursday,16:19,20,5.35,UTMy,Lalaport Bukit Bintang,Clear,17
+11/12,Thursday,16:20,54,40,UTMy,KLIA,Clear,72
+11/12,Thursday,16:21,21,6.89,UTMy,1 Utama Shopping mall,Clear,18
+11/12,Thursday,16:22,6,0.86,UTMy,Laurel Residence,Clear,7
+11/12,Thursday,16:23,17,11,UTMy,Taylor's University,Clear,19
+11/12,Thursday,16:24,32,13,UTMy,Batu Caves Temple,Clear,30
+11/12,Thursday,22:22,16,8.24,UTMy,Sunway Pyramid Mall,Clear,26
+11/12,Thursday,22:22,4,1.22,UTMy,Mid Valley Mega Mall,Clear,14
+11/12,Thursday,22:23,17,6.84,UTMy,KLCC Twin Towers,Clear,35
+11/12,Thursday,22:24,19,5.7,UTMy,1 Mont Kiara,Clear,29
+11/12,Thursday,22:24,13,5.35,UTMy,Lalaport Bukit Bintang,Clear,27
+11/12,Thursday,22:25,49,40,UTMy,KLIA,Clear,82
+11/12,Thursday,22:26,16,6.89,UTMy,1 Utama Shopping mall,Clear,31
+11/12,Thursday,22:26,5,0.86,UTMy,Laurel Residence,Clear,12
+11/12,Thursday,22:27,15,11,UTMy,Taylor's University,Clear,27
+12/12,Friday,22:28,24,13,UTMy,Batu Caves Temple,Clear,38
+12/12,Friday,14:04,17,8.24,UTMy,Sunway Pyramid Mall,Clear,14.3
+12/12,Friday,14:04,6,1.22,UTMy,Mid Valley Mega Mall,Clear,8.3
+12/12,Friday,14:05,20,6.84,UTMy,KLCC Twin Towers,Clear,22.3
+12/12,Friday,14:05,19,5.7,UTMy,1 Mont Kiara,Clear,17.3
+12/12,Friday,14:06,18,5.35,UTMy,Lalaport Bukit Bintang,Clear,18.3
+12/12,Friday,14:06,49,40,UTMy,KLIA,Clear,71.3
+12/12,Friday,14:07,19,6.89,UTMy,1 Utama Shopping mall,Clear,19.3
+12/12,Friday,14:07,6,0.86,UTMy,Laurel Residence,Clear,9.3
+12/12,Friday,14:08,18,11,UTMy,Taylor's University,Clear,18.3
+12/12,Friday,14:08,27,13,UTMy,Batu Caves Temple,Clear,28.3
+13/12,Saturday,17:20,39,8.24,UTMy,Sunway Pyramid Mall,Thunder,45
+13/12,Saturday,17:22,13,1.22,UTMy,Mid Valley Mega Mall,Thunder,19
+13/12,Saturday,17:24,39,6.84,UTMy,KLCC Twin Towers,Thunder,60
+13/12,Saturday,17:26,43,5.7,UTMy,1 Mont Kiara,Thunder,49
+13/12,Saturday,17:28,39,5.35,UTMy,Lalaport Bukit Bintang,Thunder,45
+13/12,Saturday,17:30,99,40,UTMy,KLIA,Thunder,75
+13/12,Saturday,17:32,38,6.89,UTMy,1 Utama Shopping mall,Thunder,48
+13/12,Saturday,17:33,14,0.86,UTMy,Laurel Residence,Thunder,16
+13/12,Saturday,17:34,37,11,UTMy,Taylor's University,Thunder,42
+12/12,Saturday,17:35,62,13,UTMy,Batu Caves Temple,Thunder,66
+13/12,Saturday,23:01,16,8.24,UTMy,Sunway Pyramid Mall,Clear,26
+13/12,Saturday,23:02,5,1.22,UTMy,Mid Valley Mega Mall,Clear,14
+13/12,Saturday,23:03,19,6.84,UTMy,KLCC Twin Towers,Clear,35
+13/12,Saturday,23:05,20,5.7,UTMy,1 Mont Kiara,Clear,26
+13/12,Saturday,23:06,14,5.35,UTMy,Lalaport Bukit Bintang,Clear,29
+13/12,Saturday,23:07,50,40,UTMy,KLIA,Clear,82
+13/12,Saturday,23:08,16,6.89,UTMy,1 Utama Shopping mall,Clear,26
+13/12,Saturday,23:09,5,0.86,UTMy,Laurel Residence,Clear,11
+13/12,Saturday,23:10,18,11,UTMy,Taylor's University,Clear,25
+13/12,Saturday,23:11,29,13,UTMy,Batu Caves Temple,Clear,37
+14/12,Sunday,02:47,11,8.24,UTMy,Sunway Pyramid Mall,Clear,14
+14/12,Sunday,02:47,4,1.22,UTMy,Mid Valley Mega Mall,Clear,9
+14/12,Sunday,02:48,13,6.84,UTMy,KLCC Twin Towers,Clear,19
+14/12,Sunday,02:48,17,5.7,UTMy,1 Mont Kiara,Clear,17
+14/12,Sunday,02:50,10,5.35,UTMy,Lalaport Bukit Bintang,Clear,18
+14/12,Sunday,02:50,47,40,UTMy,KLIA,Clear,67
+14/12,Sunday,02:52,14,6.89,UTMy,1 Utama Shopping mall,Clear,17
+14/12,Sunday,02:52,5,0.86,UTMy,Laurel Residence,Clear,4
+14/12,Sunday,02:53,10,11,UTMy,Taylor's University,Clear,13
+14/12,Sunday,02:53,20,13,UTMy,Batu Caves Temple,Clear,22
+14/12,Sunday,14:50,18,8.24,UTMy,Sunway Pyramid Mall,Clear,30
+14/12,Sunday,14:51,6,1.22,UTMy,Mid Valley Mega Mall,Clear,15
+14/12,Sunday,14:52,18,6.84,UTMy,KLCC Twin Towers,Clear,37
+14/12,Sunday,14:53,23,5.7,UTMy,1 Mont Kiara,Clear,30
+14/12,Sunday,14:54,15,5.35,UTMy,Lalaport Bukit Bintang,Clear,30
+14/12,Sunday,14:55,53,40,UTMy,KLIA,Clear,75
+14/12,Sunday,14:56,19,6.89,UTMy,1 Utama Shopping mall,Clear,34
+14/12,Sunday,14:57,5,0.86,UTMy,Laurel Residence,Clear,12
+14/12,Sunday,14:58,15,11,UTMy,Taylor's University,Clear,32
+14/12,Sunday,15:05,25,13,UTMy,Batu Caves Temple,Clear,47
+15/12,Monday,10:13,19,8.24,UTMy,Sunway Pyramid Mall,Clear,12
+15/12,Monday,10:14,6,1.22,UTMy,Mid Valley Mega Mall,Clear,6
+15/12,Monday,10:15,18,6.84,UTMy,KLCC Twin Towers,Clear,14
+15/12,Monday,10:16,24,5.7,UTMy,1 Mont Kiara,Clear,13
+15/12,Monday,10:17,14,5.35,UTMy,Lalaport Bukit Bintang,Clear,12
+15/12,Monday,10:18,50,40,UTMy,KLIA,Clear,65
+15/12,Monday,10:19,19,6.89,UTMy,1 Utama Shopping mall,Clear,13
+15/12,Monday,10:20,7,0.86,UTMy,Laurel Residence,Clear,6
+15/12,Monday,10:21,17,11,UTMy,Taylor's University,Clear,12
+15/12,Monday,10:23,28,13,UTMy,Batu Caves Temple,Clear,20
+15/12,Monday,14:40,17,8.24,UTMy,Sunway Pyramid Mall,Clear,15
+15/12,Monday,14:40,6,1.22,UTMy,Mid Valley Mega Mall,Clear,7
+15/12,Monday,14:41,18,6.84,UTMy,KLCC Twin Towers,Clear,16
+15/12,Monday,14:41,25,5.7,UTMy,1 Mont Kiara,Clear,14
+15/12,Monday,14:42,16,5.35,UTMy,Lalaport Bukit Bintang,Clear,14
+15/12,Monday,14:42,52,40,UTMy,KLIA,Clear,65
+15/12,Monday,14:43,19,6.89,UTMy,1 Utama Shopping mall,Clear,16
+15/12,Monday,14:43,6,0.86,UTMy,Laurel Residence,Clear,7
+15/12,Monday,14:44,19,11,UTMy,Taylor's University,Clear,17
+15/12,Monday,14:45,28,13,UTMy,Batu Caves Temple,Clear,23
+15/12,Monday,16:15,19,8.24,UTMy,Sunway Pyramid Mall,Clear,13
+15/12,Monday,16:16,5,1.22,UTMy,Mid Valley Mega Mall,Clear,6
+15/12,Monday,16:17,17,6.84,UTMy,KLCC Twin Towers,Clear,13
+15/12,Monday,16:18,25,5.7,UTMy,1 Mont Kiara,Clear,13
+15/12,Monday,16:19,16,5.35,UTMy,Lalaport Bukit Bintang,Clear,12
+15/12,Monday,16:20,60,40,UTMy,KLIA,Clear,65
+15/12,Monday,16:21,21,6.89,UTMy,1 Utama Shopping mall,Clear,14
+15/12,Monday,16:22,5,0.86,UTMy,Laurel Residence,Clear,5
+15/12,Monday,16:23,21,11,UTMy,Taylor's University,Clear,13
+15/12,Monday,16:24,31,13,UTMy,Batu Caves Temple,Clear,20
+16/12,Tuesday,00:53,11,8.24,UTMy,Sunway Pyramid Mall,Rain,15
+16/12,Tuesday,00:53,4,1.22,UTMy,Mid Valley Mega Mall,Rain,9
+16/12,Tuesday,00:54,14,6.84,UTMy,KLCC Twin Towers,Rain,19
+16/12,Tuesday,00:54,17,5.7,UTMy,1 Mont Kiara,Rain,16
+16/12,Tuesday,00:55,11,5.35,UTMy,Lalaport Bukit Bintang,Rain,16
+16/12,Tuesday,00:55,50,40,UTMy,KLIA,Rain,71
+16/12,Tuesday,00:56,15,6.89,UTMy,1 Utama Shopping mall,Rain,17
+16/12,Tuesday,00:57,5,0.86,UTMy,Laurel Residence,Rain,8
+16/12,Tuesday,00:57,10,11,UTMy,Taylor's University,Rain,16
+16/12,Tuesday,00:58,19,13,UTMy,Batu Caves Temple,Rain,22
+16/12,Tuesday,03:45,11,8.24,UTMy,Sunway Pyramid Mall,Clear,12
+16/12,Tuesday,03:45,4,1.22,UTMy,Mid Valley Mega Mall,Clear,7
+16/12,Tuesday,03:46,14,6.84,UTMy,KLCC Twin Towers,Clear,16
+16/12,Tuesday,03:46,17,5.7,UTMy,1 Mont Kiara,Clear,13
+16/12,Tuesday,03:37,10,5.35,UTMy,Lalaport Bukit Bintang,Clear,13
+16/12,Tuesday,03:48,46,40,UTMy,KLIA,Clear,65
+16/12,Tuesday,03:49,14,6.89,UTMy,1 Utama Shopping mall,Clear,13
+16/12,Tuesday,03:50,4,0.86,UTMy,Laurel Residence,Clear,7
+16/12,Tuesday,03:51,10,11,UTMy,Taylor's University,Clear,13
+16/12,Tuesday,03:52,18,13,UTMy,Batu Caves Temple,Clear,17
+16/12,Tuesday,08:28,28,8.24,UTMy,Sunway Pyramid Mall,Clear,19
+16/12,Tuesday,08:29,5,1.22,UTMy,Mid Valley Mega Mall,Clear,9
+16/12,Tuesday,08:29,20,6.84,UTMy,KLCC Twin Towers,Clear,22
+16/12,Tuesday,08:30,24,5.7,UTMy,1 Mont Kiara,Clear,19
+16/12,Tuesday,08:31,24,5.35,UTMy,Lalaport Bukit Bintang,Clear,20
+16/12,Tuesday,08:31,48,40,UTMy,KLIA,Clear,69
+16/12,Tuesday,08:32,18,6.89,UTMy,1 Utama Shopping mall,Clear,18
+16/12,Tuesday,08:32,8,0.86,UTMy,Laurel Residence,Clear,10
+16/12,Tuesday,08:33,28,11,UTMy,Taylor's University,Clear,17
+16/12,Tuesday,08:34,27,13,UTMy,Batu Caves Temple,Clear,23
+17/12,Wednesday,16:36,26,8.24,UTMy,Sunway Pyramid Mall,Rain,31
+17/12,Wednesday,16:36,6,1.22,UTMy,Mid Valley Mega Mall,Rain,14
+17/12,Wednesday,16:36,22,6.84,UTMy,KLCC Twin Towers,Rain,35
+17/12,Wednesday,16:37,28,5.7,UTMy,1 Mont Kiara,Rain,30
+17/12,Wednesday,16:37,19,5.35,UTMy,Lalaport Bukit Bintang,Rain,29
+17/12,Wednesday,16:38,69,40,UTMy,KLIA,Rain,75
+17/12,Wednesday,16:39,27,6.89,UTMy,1 Utama Shopping mall,Rain,36
+17/12,Wednesday,16:39,7,0.86,UTMy,Laurel Residence,Rain,13
+17/12,Wednesday,16:40,29,11,UTMy,Taylor's University,Rain,33
+17/12,Wednesday,16:40,40,13,UTMy,Batu Caves Temple,Rain,43
+18/12,Thursday,09:41,20,8.24,UTMy,Sunway Pyramid Mall,Clear,15
+18/12,Thursday,09:42,5,1.22,UTMy,Mid Valley Mega Mall,Clear,6
+18/12,Thursday,09:43,26,6.84,UTMy,KLCC Twin Towers,Clear,13
+18/12,Thursday,09:44,24,5.7,UTMy,1 Mont Kiara,Clear,13
+18/12,Thursday,09:45,13,5.35,UTMy,Lalaport Bukit Bintang,Clear,13
+18/12,Thursday,09:46,48,40,UTMy,KLIA,Clear,65
+18/12,Thursday,09:47,19,6.89,UTMy,1 Utama Shopping mall,Clear,13
+18/12,Thursday,09:48,6,0.86,UTMy,Laurel Residence,Clear,6
+18/12,Thursday,09:48,20,11,UTMy,Taylor's University,Clear,15
+18/12,Thursday,09:48,25,13,UTMy,Batu Caves Temple,Clear,20
+19/12,Friday,08:22,18,8.24,UTMy,Sunway Pyramid Mall,Rain,13
+19/12,Friday,08:22,5,1.22,UTMy,Mid Valley Mega Mall,Rain,6
+19/12,Friday,08:23,18,6.84,UTMy,KLCC Twin Towers,Rain,14
+19/12,Friday,08:24,23,5.7,UTMy,1 Mont Kiara,Rain,13
+19/12,Friday,08:25,15,5.35,UTMy,Lalaport Bukit Bintang,Rain,13
+19/12,Friday,08:26,50,40,UTMy,KLIA,Rain,65
+19/12,Friday,08:27,18,6.89,UTMy,1 Utama Shopping mall,Rain,15
+19/12,Friday,08:28,7,0.86,UTMy,Laurel Residence,Rain,8
+19/12,Friday,08:29,19,11,UTMy,Taylor's University,Rain,17
+19/12,Friday,08:30,25,13,UTMy,Batu Caves Temple,Rain,19
+19/12,Friday,10:15,18,8.24,UTMy,Sunway Pyramid Mall,Rain,13
+19/12,Friday,10:16,7,1.22,UTMy,Mid Valley Mega Mall,Rain,6
+19/12,Friday,10:17,19,6.84,UTMy,KLCC Twin Towers,Rain,15
+19/12,Friday,10:18,25,5.7,UTMy,1 Mont Kiara,Rain,14
+19/12,Friday,10:19,16,5.35,UTMy,Lalaport Bukit Bintang,Rain,14
+19/12,Friday,10:20,52,40,UTMy,KLIA,Rain,65
+19/12,Friday,10:20,18,6.89,UTMy,1 Utama Shopping mall,Rain,14
+19/12,Friday,10:21,7,0.86,UTMy,Laurel Residence,Rain,6
+19/12,Friday,10:21,19,11,UTMy,Taylor's University,Rain,14
+19/12,Friday,10:22,28,13,UTMy,Batu Caves Temple,Rain,23
+21/12,Sunday,01:54,11,8.24,UTMy,Sunway Pyramid Mall,Clear,14
+21/12,Sunday,01:54,4,1.22,UTMy,Mid Valley Mega Mall,Clear,8
+21/12,Sunday,01:55,14,6.84,UTMy,KLCC Twin Towers,Clear,19
+21/12,Sunday,01:55,18,5.7,UTMy,1 Mont Kiara,Clear,14
+21/12,Sunday,01:56,10,5.35,UTMy,Lalaport Bukit Bintang,Clear,14
+21/12,Sunday,01:56,46,40,UTMy,KLIA,Clear,73
+21/12,Sunday,01:57,15,6.89,UTMy,1 Utama Shopping mall,Clear,20
+21/12,Sunday,01:57,5,0.86,UTMy,Laurel Residence,Clear,8
+21/12,Sunday,01:58,10,11,UTMy,Taylor's University,Clear,13
+21/12,Sunday,01:59,18,13,UTMy,Batu Caves Temple,Clear,32
+23/12,Tuesday,15:27,18,8.24,UTMy,Sunway Pyramid Mall,Clear ,20
+23/12,Tuesday,15:27,5,1.22,UTMy,Mid Valley Mega Mall,Clear ,11
+23/12,Tuesday,15:28,24,6.84,UTMy,KLCC Twin Towers,Clear ,29
+23/12,Tuesday,15:28,25,5.7,UTMy,1 Mont Kiara,Clear ,22
+23/12,Tuesday,15:29,17,5.35,UTMy,Lalaport Bukit Bintang,Clear ,22
+23/12,Tuesday,15:29,52,40,UTMy,KLIA,Clear ,75
+23/12,Tuesday,15:30,20,6.89,UTMy,1 Utama Shopping mall,Clear ,24
+23/12,Tuesday,15:30,5,0.86,UTMy,Laurel Residence,Clear ,10
+23/12,Tuesday,15:31,19,11,UTMy,Taylor's University,Clear ,22
+23/12,Tuesday,15:32,27,13,UTMy,Batu Caves Temple,Clear ,33
+24/12,Wednesday,08:56,18,8.24,UTMy,Sunway Pyramid Mall,Clear,12
+24/12,Wednesday ,08:56,4,1.22,UTMy,Mid Valley Mega Mall,Clear ,6
+24/12,Wednesday ,08:57,16,6.84,UTMy,KLCC Twin Towers,Clear,14
+24/12,Wednesday ,08:57,22,5.7,UTMy,1 Mont Kiara,Clear ,13
+24/12,Wednesday ,08:58,12,5.35,UTMy,Lalaport Bukit Bintang,Clear ,12
+24/12,Wednesday ,08:58,47,40,UTMy,KLIA,Clear ,65
+24/12,Wednesday ,08:59,17,6.89,UTMy,1 Utama Shopping mall,Clear ,14
+24/12,Wednesday ,09:01,7,0.86,UTMy,Laurel Residence,Clear ,7
+24/12,Wednesday ,09:03,16,11,UTMy,Taylor's University,Clear ,13
+24/12,Wednesday ,09:04,26,13,UTMy,Batu Caves Temple,Clear ,18
+24/12,Wednesday,12:25,18,8.24,UTMy,Sunway Pyramid Mall,Clear,21
+24/12,Wednesday ,12:26,6,1.22,UTMy,Mid Valley Mega Mall,Clear ,9
+24/12,Wednesday ,12:27,18,6.84,UTMy,KLCC Twin Towers,Clear ,18
+24/12,Wednesday ,12:28,24,5.7,UTMy,1 Mont Kiara,Clear ,18
+24/12,Wednesday ,12:29,20,5.35,UTMy,Lalaport Bukit Bintang,Clear ,15
+24/12,Wednesday ,12:30,52,40,UTMy,KLIA,Clear ,65
+24/12,Wednesday ,12:31,21,6.89,UTMy,1 Utama Shopping mall,Clear ,18
+24/12,Wednesday ,12:32,5,0.86,UTMy,Laurel Residence,Clear ,6
+24/12,Wednesday ,12:33,20,11,UTMy,Taylor's University,Clear ,13
+24/12,Wednesday ,12:34,28,13,UTMy,Batu Caves Temple,Clear ,19
+24/12,Wednesday ,16:05,22,8.24,UTMy,Sunway Pyramid Mall,Clear ,39
+24/12,Wednesday ,16:06,6,1.22,UTMy,Mid Valley Mega Mall,Clear ,17
+24/12,Wednesday ,16:07,23,6.84,UTMy,KLCC Twin Towers,Clear ,39
+24/12,Wednesday ,16:08,27,5.7,UTMy,1 Mont Kiara,Clear ,33
+24/12,Wednesday ,16:09,17,5.35,UTMy,Lalaport Bukit Bintang,Clear ,35
+24/12,Wednesday ,16:10,66,40,UTMy,KLIA,Clear ,75
+24/12,Wednesday ,16:11,23,6.89,UTMy,1 Utama Shopping mall,Clear ,37
+24/12,Wednesday ,16:12,6,0.86,UTMy,Laurel Residence,Clear ,13
+24/12,Wednesday ,16:13,22,11,UTMy,Taylor's University,Clear ,36
+24/12,Wednesday ,16:16,35,13,UTMy,Batu Caves Temple,Clear ,49
+25/12,Thursday,00:27,14,8.24,UTMy,Sunway Pyramid Mall,Clear,40
+25/12,Thursday,00:27,4,1.22,UTMy,Mid Valley Mega Mall,Clear,15
+25/12,Thursday,00:28,15,6.84,UTMy,KLCC Twin Towers,Clear,34
+25/12,Thursday,00:28,18,5.7,UTMy,1 Mont Kiara,Clear,29
+25/12,Thursday,00:29,13,5.35,UTMy,Lalaport Bukit Bintang,Clear,29
+25/12,Thursday,00:29,44,40,UTMy,KLIA,Clear,82
+25/12,Thursday,00:30,18,6.89,UTMy,1 Utama Shopping mall,Clear,37
+25/12,Thursday,00:30,5,0.86,UTMy,Laurel Residence,Clear,14
+25/12,Thursday,00:31,11,11,UTMy,Taylor's University,Clear,28
+25/12,Thursday,00:33,19,13,UTMy,Batu Caves Temple,Clear,38
+26/12,Friday,15:25,18,8.24,UTMy,Sunway Pyramid Mall,Clear,30
+26/12,Friday,15:25,5,1.22,UTMy,Mid Valley Mega Mall,Clear,9
+26/12,Friday,15:26,18,6.84,UTMy,KLCC Twin Towers,Clear,30
+26/12,Friday,15:26,23,5.7,UTMy,1 Mont Kiara,Clear,21
+26/12,Friday,15:27,17,5.35,UTMy,Lalaport Bukit Bintang,Clear,21
+26/12,Friday,15:27,56,40,UTMy,KLIA,Clear,75
+26/12,Friday,15:29,21,6.89,UTMy,1 Utama Shopping mall,Clear,23
+26/12,Friday,15:28,5,0.86,UTMy,Laurel Residence,Clear,8
+26/12,Friday,15:30,15,11,UTMy,Taylor's University,Clear,22
+26/12,Friday,15:30,25,13,UTMy,Batu Caves Temple,Clear,23
+26/12,Friday,19:05,18,8.24,UTMy,Sunway Pyramid Mall,Thunder,41
+26/12,Friday,19:05,5,1.22,UTMy,Mid Valley Mega Mall,Thunder,21
+26/12,Friday,19:06,22,6.84,UTMy,KLCC Twin Towers,Thunder,60
+26/12,Friday,19:06,26,5.7,UTMy,1 Mont Kiara,Thunder,42
+26/12,Friday,19:07,21,5.35,UTMy,Lalaport Bukit Bintang,Thunder,45
+26/12,Friday,19:07,62,40,UTMy,KLIA,Thunder,82
+26/12,Friday,19:08,22,6.89,UTMy,1 Utama Shopping mall,Thunder,43
+26/12,Friday,19:08,5,0.86,UTMy,Laurel Residence,Thunder,16
+26/12,Friday,19:09,19,11,UTMy,Taylor's University,Thunder,45
+26/12,Friday,19:09,25,13,UTMy,Batu Caves Temple,Thunder,68
+27/12,Saturday,23:28,13,8.24,UTMy,Sunway Pyramid Mall,Clear,21
+27/12,Saturday,23:29,4,1.22,UTMy,Mid Valley Mega Mall,Clear ,10
+27/12,Saturday,23:29,17,6.84,UTMy,KLCC Twin Towers,Clear ,24
+27/12,Saturday,23:30,18,5.7,UTMy,1 Mont Kiara,Clear ,21
+27/12,Saturday,23:30,13,5.35,UTMy,Lalaport Bukit Bintang,Clear ,18
+27/12,Saturday,23:31,48,40,UTMy,KLIA,Clear,79
+27/12,Saturday,23:31,15,6.89,UTMy,1 Utama Shopping mall,Clear,20
+27/12,Saturday,23:32,8,0.86,UTMy,Laurel Residence,Clear ,8
+27/12,Saturday,23:33,12,11,UTMy,Taylor's University,Clear ,17
+27/12,Saturday,23:35,24,13,UTMy,Batu Caves Temple,Clear ,21
+28/12,Sunday,22:30,15,8.24,UTMy,Sunway Pyramid Mall,Clear ,29
+28/12,Sunday,22:30,5,1.22,UTMy,Mid Valley Mega Mall,Clear ,15
+28/12,Sunday,22:31,16,6.84,UTMy,KLCC Twin Towers,Clear ,39
+28/12,Sunday,22:31,16,5.7,UTMy,1 Mont Kiara,Clear ,30
+28/12,Sunday,22:32,13,5.35,UTMy,Lalaport Bukit Bintang,Clear ,29
+28/12,Sunday,22:32,49,40,UTMy,KLIA,Clear,82
+28/12,Sunday,22:33,16,6.89,UTMy,1 Utama Shopping mall,Clear,32
+28/12,Sunday,22:33,5,0.86,UTMy,Laurel Residence,Clear ,12
+28/12,Sunday,22:34,16,11,UTMy,Taylor's University,Clear ,26
+28/12,Sunday,22:34,22,13,UTMy,Batu Caves Temple,Clear ,36
+29/12,Monday,21:10,17,8.24,UTMy,Sunway Pyramid Mall,Clear ,23
+29/12,Monday,21:10,5,1.22,UTMy,Mid Valley Mega Mall,Clear ,9
+29/12,Monday,21:11,15,6.84,UTMy,KLCC Twin Towers,Clear ,28
+29/12,Monday,21:11,20,5.7,UTMy,1 Mont Kiara,Clear ,25
+29/12,Monday,21:12,13,5.35,UTMy,Lalaport Bukit Bintang,Clear ,24
+29/12,Monday,21:12,49,40,UTMy,KLIA,Clear,82
+29/12,Monday,21:13,17,6.89,UTMy,1 Utama Shopping mall,Clear,25
+29/12,Monday,21:13,5,0.86,UTMy,Laurel Residence,Clear ,10
+29/12,Monday,21:14,16,11,UTMy,Taylor's University,Clear ,30
+29/12,Monday,21:15,21,13,UTMy,Batu Caves Temple,Clear ,31
+30/12,Tuesday,01:05,12,8.24,UTMy,Sunway Pyramid Mall,Rain,14
+30/12,Tuesday,01:05,4,1.22,UTMy,Mid Valley Mega Mall,Rain,8
+30/12,Tuesday,01:06,14,6.84,UTMy,KLCC Twin Towers,Rain,17
+30/12,Tuesday,01:06,14,5.7,UTMy,1 Mont Kiara,Rain,15
+30/12,Tuesday,01:07,12,5.35,UTMy,Lalaport Bukit Bintang,Rain,14
+30/12,Tuesday,01:07,42,40,UTMy,KLIA,Rain,71
+30/12,Tuesday,01:08,14,6.89,UTMy,1 Utama Shopping mall,Rain,16
+30/12,Tuesday,01:08,5,0.86,UTMy,Laurel Residence,Rain,8
+30/12,Tuesday,01:09,11,11,UTMy,Taylor's University,Rain,14
+30/12,Tuesday,01:09,18,13,UTMy,Batu Caves Temple,Rain,20
+30/12,Tuesday,16:05,19,8.24,UTMy,Sunway Pyramid Mall,Thunder,35
+30/12,Tuesday,16:05,6,1.22,UTMy,Mid Valley Mega Mall,Thunder,18
+30/12,Tuesday,16:05,18,6.84,UTMy,KLCC Twin Towers,Thunder,42
+30/12,Tuesday,16:06,23,5.7,UTMy,1 Mont Kiara,Thunder,35
+30/12,Tuesday,16:06,18,5.35,UTMy,Lalaport Bukit Bintang,Thunder,34
+30/12,Tuesday,16:06,60,40,UTMy,KLIA,Thunder,75
+30/12,Tuesday,16:07,23,6.89,UTMy,1 Utama Shopping mall,Thunder,37
+30/12,Tuesday,16:07,6,0.86,UTMy,Laurel Residence,Thunder,14
+30/12,Tuesday,16:07,22,11,UTMy,Taylor's University,Thunder,36
+30/12,Tuesday,16:08,30,13,UTMy,Batu Caves Temple,Thunder,54

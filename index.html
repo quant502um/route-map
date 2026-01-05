@@ -3,186 +3,450 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Route Finder</title>
+  <title>Grab Fare Estimator (Demo)</title>
 
   <!-- Leaflet -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <style>
-    body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
-    #topbar { padding: 12px; display: grid; gap: 8px; background: #fff; }
-    #topbar input { padding: 10px; font-size: 14px; width: 100%; box-sizing: border-box; }
-    #topbar button { padding: 10px; font-size: 14px; cursor: pointer; }
-    #map { height: calc(100vh - 150px); }
-    #status { font-size: 13px; opacity: 0.85; }
-    @media (min-width: 700px){
-      #topbar { grid-template-columns: 1fr 1fr auto; align-items: center; }
-      #status { grid-column: 1 / -1; }
-      #map { height: calc(100vh - 90px); }
+    :root { --border:#e5e7eb; --text:#111827; --muted:#6b7280; --card:#ffffff; --bg:#f9fafb; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; color:var(--text); background:var(--bg); }
+    header { padding: 16px 18px; border-bottom: 1px solid var(--border); background:#fff; }
+    header h1 { margin:0; font-size:18px; }
+    header p { margin:6px 0 0; color:var(--muted); font-size:13px; }
+
+    .wrap { display:grid; grid-template-columns: 380px 1fr; gap: 14px; padding: 14px; min-height: calc(100vh - 70px); }
+    @media (max-width: 980px){ .wrap { grid-template-columns: 1fr; } }
+
+    .panel { background: var(--card); border:1px solid var(--border); border-radius: 12px; padding: 14px; box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
+    .panel h2 { margin: 0 0 10px; font-size: 15px; }
+    .grid { display:grid; gap:10px; }
+    label { display:block; font-size: 12px; color: var(--muted); margin: 0 0 4px; }
+    input, select, button {
+      width:100%; padding:10px 10px; border:1px solid var(--border);
+      border-radius: 10px; font-size: 14px; background:#fff;
     }
+    button { cursor:pointer; font-weight: 600; }
+    .btnRow { display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
+    @media (max-width: 980px){ .btnRow { grid-template-columns: 1fr; } }
+
+    .status { font-size: 12px; color: var(--muted); margin-top: 10px; }
+    .cards { display:grid; gap:10px; margin-top: 12px; }
+    .card {
+      border:1px solid var(--border); border-radius: 12px; padding: 12px; background:#fff;
+    }
+    .cardTitle { font-size: 12px; color: var(--muted); }
+    .cardValue { font-size: 18px; font-weight: 700; margin-top: 3px; }
+    .row2 { display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
+    .tiny { font-size: 12px; color: var(--muted); margin-top: 6px; line-height: 1.4; }
+
+    #mapPanel { padding: 0; overflow:hidden; }
+    #map { width: 100%; height: calc(100vh - 70px - 28px); min-height: 520px; }
+    @media (max-width: 980px){ #map { height: 520px; } }
   </style>
 </head>
 
 <body>
-  <div id="topbar">
-    <input id="from" placeholder="Pickup point (e.g., 28 Mont Kiara / KL Sentral)" />
-    <input id="to" placeholder="Drop-off point (e.g., Four Seasons Hotel KL)" />
-    <button id="btn">Find route</button>
+<header>
+  <h1>Grab Fare Estimator (Demo)</h1>
+  <p>Enter trip details to visualize the route and compare <b>Estimated</b> vs <b>Actual</b> fare (from your dataset).</p>
+</header>
 
-    <div id="status">
-      Enter a pickup and drop-off location, then click <b>Find route</b>.
+<div class="wrap">
+  <!-- Left panel -->
+  <div class="panel">
+    <h2>Trip Inputs</h2>
+
+    <div class="grid">
+      <div>
+       <label for="from">📍 Pickup point</label>
+<input id="from" placeholder="e.g., 28 Mont Kiara / KL Sentral" />
+      </div>
+
+      <div>
+       <label for="to">⛳ Drop-off point</label>
+<input id="to" placeholder="e.g., Four Seasons Hotel KL" />
+      </div>
+
+      <div class="row2">
+        <div>
+         <label for="time">⏰ Time</label>
+<input id="time" type="time" value="18:00" />
+        </div>
+        <div>
+  <label for="day">📅 Day</label>
+  <select id="day">
+    <option>Monday</option>
+    <option>Tuesday</option>
+    <option>Wednesday</option>
+    <option>Thursday</option>
+    <option>Friday</option>
+    <option>Saturday</option>
+    <option>Sunday</option>
+  </select>
+</div>
+      </div>
+
+      <div>
+      <label for="weather">🌤 Weather</label>
+<select id="weather">
+  <option value="Clear">Clear</option>
+  <option value="Rain">Rain</option>
+  <option value="Thunder">Thunder</option>
+</select>
+      </div>
+
+      <div class="btnRow">
+        <button id="btnRoute">Find route</button>
+        <button id="btnEstimate">Estimate & Compare</button>
+      </div>
+
+      <div class="status" id="status">Loading dataset…</div>
+    </div>
+
+    <div class="cards">
+      <div class="row2">
+        <div class="card">
+          <div class="cardTitle">Distance</div>
+          <div class="cardValue" id="distanceText">—</div>
+        </div>
+        <div class="card">
+          <div class="cardTitle">Duration</div>
+          <div class="cardValue" id="durationText">—</div>
+        </div>
+      </div>
+
+      <div class="row2">
+        <div class="card">
+          <div class="cardTitle">Estimated fare (RM)</div>
+          <div class="cardValue" id="estFareText">—</div>
+        </div>
+        <div class="card">
+          <div class="cardTitle">Actual fare (RM)</div>
+          <div class="cardValue" id="actFareText">—</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="cardTitle">Difference (Actual − Estimated)</div>
+        <div class="cardValue" id="diffText">—</div>
+        <div class="tiny" id="matchInfo">
+          Actual fare is computed from the dataset by averaging trips with similar distance/time/weather/day.
+        </div>
+      </div>
+    </div>
+
+    <div class="tiny">
+      <b>Note:</b> This demo uses OpenStreetMap (Nominatim) + OSRM for routing.  
+      Replace the coefficients in <code>estimateFare()</code> later with your regression results.
     </div>
   </div>
 
-  <div id="map"></div>
+  <!-- Right panel -->
+  <div class="panel" id="mapPanel">
+    <div id="map"></div>
+  </div>
+</div>
 
-  <script>
-    // --- Map init (Kuala Lumpur default) ---
-    const map = L.map("map").setView([3.1390, 101.6869], 12);
+<script>
+  // =========================
+  // Map + Routing (Leaflet + OSM + OSRM)
+  // =========================
+  const map = L.map("map").setView([3.1390, 101.6869], 12);
 
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom: 19,
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19,
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
 
-    // If embedded in Google Sites (iframe), size may change after load
-    setTimeout(() => map.invalidateSize(), 500);
-    window.addEventListener("resize", () => map.invalidateSize());
+  // Google Sites iframe resize safety
+  setTimeout(() => map.invalidateSize(), 500);
+  window.addEventListener("resize", () => map.invalidateSize());
 
-    const statusEl = document.getElementById("status");
-    const fromEl = document.getElementById("from");
-    const toEl = document.getElementById("to");
-    const btnEl = document.getElementById("btn");
+  let fromMarker = null, toMarker = null, routeLine = null;
+  let lastRoute = null; // {distance_km, duration_min}
 
-    let fromMarker = null;
-    let toMarker = null;
-    let routeLine = null;
+  const el = {
+    status: document.getElementById("status"),
+    from: document.getElementById("from"),
+    to: document.getElementById("to"),
+    time: document.getElementById("time"),
+    day: document.getElementById("day"),
+    weather: document.getElementById("weather"),
+    btnRoute: document.getElementById("btnRoute"),
+    btnEstimate: document.getElementById("btnEstimate"),
+    distanceText: document.getElementById("distanceText"),
+    durationText: document.getElementById("durationText"),
+    estFareText: document.getElementById("estFareText"),
+    actFareText: document.getElementById("actFareText"),
+    diffText: document.getElementById("diffText"),
+    matchInfo: document.getElementById("matchInfo"),
+  };
+  const PICKUP = {
+  label: "University of Tsukuba Malaysia (UTMy)",
+  // 地図用は “座標” を使うのが一番確実（後述）
+  lat: 3.1739,
+  lon: 101.6643
+};
 
-    function setStatus(msg) {
-      statusEl.textContent = msg;
+const DESTINATIONS = [
+  { label: "KLCC Twin Towers", value: "KLCC Twin Towers", query: "Petronas Twin Towers, Kuala Lumpur" },
+  { label: "KLIA", value: "KLIA", query: "Kuala Lumpur International Airport, Sepang" },
+  { label: "Mid Valley Mega Mall", value: "Mid Valley Mega Mall", query: "Mid Valley Megamall, Kuala Lumpur" },
+  { label: "Batu Caves Temple", value: "Batu Caves Temple", query: "Batu Caves, Selangor" },
+  { label: "Lalaport Bukit Bintang", value: "Lalaport Bukit Bintang", query: "LaLaport Bukit Bintang City Centre, Kuala Lumpur" },
+  { label: "Sunway Pyramid Mall", value: "Sunway Pyramid Mall", query: "Sunway Pyramid, Petaling Jaya" },
+  { label: "1 Mont Kiara", value: "1 Mont Kiara", query: "1 Mont Kiara, Kuala Lumpur" },
+  { label: "Laurel Residence", value: "Laurel Residence", query: "Laurel Residence, Kuala Lumpur" },
+  { label: "Taylor's University", value: "Taylor's University", query: "Taylor's University, Subang Jaya" },
+  { label: "1 Utama Shopping mall", value: "1 Utama Shopping mall", query: "1 Utama Shopping Centre, Petaling Jaya" }
+];
+
+function populateDestinations(){
+  el.to.innerHTML = '<option value="">Select destination</option>';
+  DESTINATIONS.forEach(d => {
+    const opt = document.createElement("option");
+    opt.value = d.value;        // ← モデル入力に使う（重要）
+    opt.textContent = d.label;  // 表示
+    opt.dataset.query = d.query;// 地図検索用
+    el.to.appendChild(opt);
+  });
+}
+
+
+  function setStatus(msg){ el.status.textContent = msg; }
+  function rm(x){ return x == null ? "—" : `RM ${Number(x).toFixed(2)}`; }
+
+  function clearMap(){
+    if (fromMarker) map.removeLayer(fromMarker);
+    if (toMarker) map.removeLayer(toMarker);
+    if (routeLine) map.removeLayer(routeLine);
+    fromMarker = toMarker = routeLine = null;
+    lastRoute = null;
+  }
+
+  async function geocode(q){
+    const url = "https://nominatim.openstreetmap.org/search?format=json&q=" + encodeURIComponent(q);
+    const res = await fetch(url, { headers: { "Accept-Language": "en" } });
+    const data = await res.json();
+    if (!data || data.length === 0) return null;
+    return { lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon), name: data[0].display_name };
+  }
+
+  async function routeOSRM(from, to){
+    const url = `https://router.project-osrm.org/route/v1/driving/${from.lon},${from.lat};${to.lon},${to.lat}?overview=full&geometries=geojson`;
+    const res = await fetch(url);
+    const data = await res.json();
+    if (!data || data.code !== "Ok" || !data.routes?.length) return null;
+    const r = data.routes[0];
+    return { distance_m: r.distance, duration_s: r.duration, geojson: r.geometry };
+  }
+
+  function formatKm(km){ return `${km.toFixed(2)} km`; }
+  function formatMin(min){ return `${Math.round(min)} min`; }
+
+ async function findRoute(){
+  const selectedOpt = el.to.options[el.to.selectedIndex];
+  const toQ = selectedOpt?.dataset?.query || "";
+  if (!toQ) { setStatus("Please select a destination."); return; }
+
+  const from = { lat: PICKUP.lat, lon: PICKUP.lon, name: PICKUP.label };
+
+  try{
+    clearMap();
+    setStatus("Searching destination…");
+    const b = await geocode(toQ);
+    if (!b) { setStatus("Drop-off point not found. Try a more specific name."); return; }
+
+    setStatus("Calculating route…");
+    const rt = await routeOSRM(from,b);
+    if (!rt) { setStatus("Route not found. Try different locations."); return; }
+
+    // map draw...
+  } catch (e){
+    console.error(e);
+    setStatus("Sorry—something went wrong.");
+  }
+}
+
+  // =========================
+  // Dataset: load CSV from repo (data.csv)
+  // =========================
+  let dataset = []; // normalized rows
+
+  function parseCSV(text){
+    // simple CSV parser (works if your fields don't include commas inside quotes)
+    const lines = text.trim().split(/\r?\n/);
+    const headers = lines[0].split(",").map(h => h.trim());
+    return lines.slice(1).map(line => {
+      const cols = line.split(",").map(c => c.trim());
+      const row = {};
+      headers.forEach((h,i) => row[h] = cols[i]);
+      return row;
+    });
+  }
+
+  function dayToWeekend(day){
+    const d = String(day || "").toLowerCase();
+    return (d === "saturday" || d === "sunday") ? 1 : 0;
+  }
+
+  function hourFromTime(t){
+    // "15:15" -> 15
+    if (!t) return null;
+    const m = String(t).match(/^(\d{1,2}):/);
+    return m ? Number(m[1]) : null;
+  }
+
+  function isPeakHour(hour){
+    // you can change this rule later
+    if (hour == null) return 0;
+    // typical peak windows (demo)
+    return (hour >= 7 && hour <= 9) || (hour >= 17 && hour <= 20) ? 1 : 0;
+  }
+
+  async function loadDataset(){
+    try{
+      const res = await fetch("./data.csv", { cache: "no-store" });
+      if (!res.ok) throw new Error("data.csv not found");
+      const text = await res.text();
+      const rows = parseCSV(text);
+
+      // Normalize
+dataset = rows.map(r => {
+  const w = String(r.weather || "Clear").trim().toLowerCase();
+
+  const weather =
+    (w === "thunder" || w === "thunderstorm") ? "Thunder"
+    : (w === "rain") ? "Rain"
+    : "Clear";
+
+  return {
+    day_type: r.day_type,
+    time: r.time,
+    hour: hourFromTime(r.time),
+    duration_min: Number(r.duration_min),
+    distance_km: Number(r.distance_km),
+
+    weather,
+    rain: (weather === "Rain") ? 1 : 0,
+    thunder: (weather === "Thunder") ? 1 : 0,
+
+    weekend: dayToWeekend(r.day_type),
+    price_rm: Number(r.price_rm),
+  };
+}).filter(r =>
+  Number.isFinite(r.duration_min) &&
+  Number.isFinite(r.distance_km) &&
+  Number.isFinite(r.price_rm)
+);
+
+      setStatus(`Dataset loaded (${dataset.length} trips).`);
+    } catch(err){
+      console.error(err);
+      setStatus("Dataset not loaded. Please add data.csv to the repo.");
+      el.matchInfo.textContent = "Add data.csv to show Actual fare.";
     }
+  }
 
-    function clearMapObjects() {
-      if (fromMarker) map.removeLayer(fromMarker);
-      if (toMarker) map.removeLayer(toMarker);
-      if (routeLine) map.removeLayer(routeLine);
-      fromMarker = null;
-      toMarker = null;
-      routeLine = null;
-    }
+  // =========================
+  // Fare: Estimated (placeholder) + Actual from dataset
+  // =========================
+ function estimateFare({ distance_km, duration_min, peak, rain, thunder, weekend }){
+  const b0 = 4.50;
+  const bDist = 1.65;
+  const bDur = 0.28;
+  const bPeak = 2.00;
+  const bRain = 1.80;
+  const bThunder = 3.00;  // 仮
+  const bWeekend = 1.00;
 
-    async function geocode(query) {
-      const url = "https://nominatim.openstreetmap.org/search?format=json&q=" +
-                  encodeURIComponent(query);
-      const res = await fetch(url, {
-        headers: { "Accept-Language": "en" }
-      });
-      const data = await res.json();
-      if (!data || data.length === 0) return null;
-      return { lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon), name: data[0].display_name };
-    }
+  return (
+    b0 +
+    bDist * distance_km +
+    bDur * duration_min +
+    bPeak * peak +
+    bRain * rain +
+    bThunder * thunder +
+    bWeekend * weekend
+  );
+}
 
-    async function getRoute(from, to) {
-      // OSRM: lon,lat order
-      const url =
-        `https://router.project-osrm.org/route/v1/driving/` +
-        `${from.lon},${from.lat};${to.lon},${to.lat}` +
-        `?overview=full&geometries=geojson`;
+  function actualFareFromDataset(query){
+    if (!dataset.length) return { value: null, used: 0, note: "Dataset missing." };
 
-      const res = await fetch(url);
-      const data = await res.json();
+    // Matching rules (tweakable)
+    const distTol = 1.0;     // within ±1 km
+    const durTol = 5.0;      // within ±5 min
+    const hourTol = 2;       // within ±2 hours
 
-      if (!data || data.code !== "Ok" || !data.routes || data.routes.length === 0) {
-        return null;
-      }
+    const matches = dataset.filter(d => {
+      const distOk = Math.abs(d.distance_km - query.distance_km) <= distTol;
+      const durOk  = Math.abs(d.duration_min - query.duration_min) <= durTol;
 
-      const route = data.routes[0];
-      return {
-        distance_m: route.distance,
-        duration_s: route.duration,
-        geojson: route.geometry
-      };
-    }
+      const weatherOk = (d.weather === query.weather);
+      const weekendOk = (d.weekend === query.weekend);
 
-    function formatKm(meters) {
-      return (meters / 1000).toFixed(2) + " km";
-    }
+      // time matching (optional)
+      const hourOk = (d.hour == null || query.hour == null) ? true : (Math.abs(d.hour - query.hour) <= hourTol);
 
-    function formatMin(seconds) {
-      return Math.round(seconds / 60) + " min";
-    }
-
-    async function handleFindRoute() {
-      const fromQ = fromEl.value.trim();
-      const toQ = toEl.value.trim();
-
-      if (!fromQ || !toQ) {
-        setStatus("Please enter both pickup and drop-off locations.");
-        return;
-      }
-
-      try {
-        clearMapObjects();
-
-        setStatus("Searching locations...");
-        const [fromLoc, toLoc] = await Promise.all([geocode(fromQ), geocode(toQ)]);
-
-        if (!fromLoc) {
-          setStatus("Pickup point not found. Please try a more specific name.");
-          return;
-        }
-        if (!toLoc) {
-          setStatus("Drop-off point not found. Please try a more specific name.");
-          return;
-        }
-
-        setStatus("Calculating route...");
-        const route = await getRoute(fromLoc, toLoc);
-
-        if (!route) {
-          setStatus("Route not found. Please try different locations.");
-          return;
-        }
-
-        fromMarker = L.marker([fromLoc.lat, fromLoc.lon]).addTo(map).bindPopup("Pickup").openPopup();
-        toMarker = L.marker([toLoc.lat, toLoc.lon]).addTo(map).bindPopup("Drop-off");
-
-        routeLine = L.geoJSON(route.geojson, {
-          style: { weight: 5, opacity: 0.8 }
-        }).addTo(map);
-
-        // Fit to route bounds
-        const bounds = routeLine.getBounds();
-        map.fitBounds(bounds, { padding: [30, 30] });
-
-        const distText = formatKm(route.distance_m);
-        const durText = formatMin(route.duration_s);
-
-        setStatus(`Distance: ${distText} • Duration: ${durText}`);
-
-        // If embedded, ensure redraw after fitBounds
-        setTimeout(() => map.invalidateSize(), 300);
-
-      } catch (e) {
-        console.error(e);
-        setStatus("Sorry—something went wrong. Please try again.");
-      }
-    }
-
-    btnEl.addEventListener("click", handleFindRoute);
-
-    // Optional: press Enter to search
-    [fromEl, toEl].forEach(el => {
-      el.addEventListener("keydown", (ev) => {
-        if (ev.key === "Enter") handleFindRoute();
-      });
+      return distOk && durOk && weatherOk && weekendOk && hourOk;
     });
 
-    setStatus('Enter a pickup and drop-off location, then click "Find route".');
-  </script>
+    if (!matches.length){
+      return { value: null, used: 0, note: "No close matches. Try relaxing the rules." };
+    }
+
+    const avg = matches.reduce((s,x)=>s + x.price_rm, 0) / matches.length;
+    return { value: avg, used: matches.length, note: `Matched ${matches.length} trips (±${distTol} km, ±${durTol} min, same weather & day type).` };
+  }
+
+  function estimateAndCompare(){
+    if (!lastRoute){
+      setStatus("Please click “Find route” first.");
+      return;
+    }
+
+    const hour = hourFromTime(el.time.value);
+const weekend = dayToWeekend(el.day.value);
+
+const wUIRaw = String(el.weather.value || "Clear").trim();
+const wLower = wUIRaw.toLowerCase();
+const weather =
+  (wLower === "thunder" || wLower === "thunderstorm") ? "Thunder"
+  : (wLower === "rain") ? "Rain"
+  : "Clear";
+
+const rain = (weather === "Rain") ? 1 : 0;
+const thunder = (weather === "Thunder") ? 1 : 0;
+const peak = isPeakHour(hour);
+
+const features = { ...lastRoute, hour, weekend, weather, rain, thunder, peak };
+
+    const est = estimateFare(features);
+
+    const act = actualFareFromDataset(features);
+
+    el.estFareText.textContent = rm(est);
+    el.actFareText.textContent = act.value == null ? "—" : rm(act.value);
+    el.diffText.textContent = (act.value == null) ? "—" : rm(act.value - est);
+
+    el.matchInfo.textContent = act.note + (dataset.length ? ` (Dataset size: ${dataset.length})` : "");
+    setStatus("Done.");
+  }
+
+  // =========================
+  // Wire events
+  // =========================
+  el.btnRoute.addEventListener("click", findRoute);
+  el.btnEstimate.addEventListener("click", estimateAndCompare);
+
+  [el.from, el.to].forEach(x => x.addEventListener("keydown", (e)=>{ if (e.key === "Enter") findRoute(); }));
+
+  // Start
+  loadDataset();
+</script>
 </body>
 </html>

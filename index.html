@@ -202,6 +202,32 @@
     diffText: document.getElementById("diffText"),
     matchInfo: document.getElementById("matchInfo"),
   };
+  // ===== Destination master (Sheet名 / model名 と、地図検索用 query を分ける) =====
+const DESTINATIONS = [
+  { label: "Mid Valley Mega Mall", modelName: "Mid Valley Mega Mall", query: "Mid Valley Megamall, Kuala Lumpur" },
+  { label: "Sunway Pyramid Mall", modelName: "Sunway Pyramid Mall", query: "Sunway Pyramid, Petaling Jaya" },
+  { label: "KLCC Twin Towers", modelName: "KLCC Twin Towers", query: "Petronas Twin Towers, Kuala Lumpur" },
+  { label: "1 Mont Kiara", modelName: "1 Mont Kiara", query: "1 Mont Kiara, Kuala Lumpur" },
+  { label: "Lalaport Bukit Bintang", modelName: "Lalaport Bukit Bintang", query: "LaLaport Bukit Bintang City Centre, Kuala Lumpur" },
+  { label: "KLIA", modelName: "KLIA", query: "Kuala Lumpur International Airport (KLIA)" },
+  { label: "1 Utama Shopping mall", modelName: "1 Utama Shopping mall", query: "1 Utama Shopping Centre, Petaling Jaya" },
+  { label: "Laurel Residence", modelName: "Laurel Residence", query: "Laurel Residence, Kuala Lumpur" },
+  { label: "Taylor's University", modelName: "Taylor's University", query: "Taylor's University, Subang Jaya" },
+  { label: "Batu Caves Temple", modelName: "Batu Caves Temple", query: "Batu Caves, Selangor" },
+  { label: "Lapaport Bukit Bintang", modelName: "Lapaport Bukit Bintang", query: "LaLaport Bukit Bintang City Centre, Kuala Lumpur" }, // スペル揺れがあるなら追加
+];
+
+function populateDestinations(){
+  el.to.innerHTML = '<option value="">Select destination</option>';
+  DESTINATIONS.forEach(d => {
+    const opt = document.createElement("option");
+    opt.value = d.modelName;        // ★ モデル用（列名一致）
+    opt.textContent = d.label;      // ★ 表示
+    opt.dataset.query = d.query;    // ★ 地図検索用
+    el.to.appendChild(opt);
+  });
+}
+
   // Pickup表示はUTMyでも、地図検索用は別クエリにする
 const PICKUP_DISPLAY = "University of Tsukuba Malaysia (UTMy)";
 const PICKUP_QUERY   = "University of Tsukuba Malaysia, Kuala Lumpur, Malaysia"; 

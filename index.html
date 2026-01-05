@@ -216,6 +216,9 @@ const DESTINATIONS = [
   { label: "Batu Caves Temple", modelName: "Batu Caves Temple", query: "Batu Caves, Selangor" },
   { label: "Lapaport Bukit Bintang", modelName: "Lapaport Bukit Bintang", query: "LaLaport Bukit Bintang City Centre, Kuala Lumpur" }, // スペル揺れがあるなら追加
 ];
+  const PICKUP_DISPLAY = "UTMy"; 
+const PICKUP_GEOCODE_QUERY = "University of Tsukuba Malaysia, Kuala Lumpur";
+
 
 function populateDestinations(){
   el.to.innerHTML = '<option value="">Select destination</option>';
@@ -278,7 +281,9 @@ function populateDestinations(){
   function formatMin(min){ return `${Math.round(min)} min`; }
 
   async function findRoute(){
-  const fromQ = el.from.value.trim();
+ // const fromQ = el.from.value.trim();
+const fromQ = PICKUP_GEOCODE_QUERY;
+
 
 // selectで選んだ option の dataset.query を使う
 const selectedOpt = el.to.options[el.to.selectedIndex];

@@ -204,21 +204,21 @@
   };
   // ここにあなたたちの10個の行き先を入れる（表示名と検索用住所）
 const DESTINATIONS = [
-  { label: "KL Sentral", query: "KL Sentral, Kuala Lumpur" },
-  { label: "Sunway Pyramid", query: "Sunway Pyramid, Petaling Jaya" },
-  { label: "Mid Valley Megamall", query: "Mid Valley Megamall, Kuala Lumpur" },
-  // ...残りも同じ形式で追加
+  { label: "KL Sentral", modelName: "KL Sentral", query: "KL Sentral, Kuala Lumpur" },
+  { label: "Sunway Pyramid Mall", modelName: "Sunway Pyramid Mall", query: "Sunway Pyramid, Petaling Jaya" },
+  { label: "Mid Valley Mega Mall", modelName: "Mid Valley Mega Mall", query: "Mid Valley Megamall, Kuala Lumpur" },
 ];
+
 
 // selectに選択肢を入れる
 function populateDestinations(){
-  // 最初の option（Select destination）以外を全部消す
   el.to.innerHTML = '<option value="">Select destination</option>';
 
   DESTINATIONS.forEach(d => {
     const opt = document.createElement("option");
-    opt.value = d.query;     // ★ valueは geocode しやすい住所
-    opt.textContent = d.label; // ★ 表示は短い名前
+    opt.value = d.modelName;        // ★モデル用（列名と一致させる）
+    opt.textContent = d.label;      // 表示名
+    opt.dataset.query = d.query;    // ★住所は隠し持つ
     el.to.appendChild(opt);
   });
 }
@@ -257,7 +257,9 @@ function populateDestinations(){
 
   async function findRoute(){
     const fromQ = el.from.value.trim();
-    const toQ = el.to.value.trim();
+   const selected = el.to.selectedOptions[0];
+const toQ = selected?.dataset?.query ? selected.dataset.query.trim() : "";
+
     if (!fromQ || !toQ) { setStatus("Please enter both pickup and drop-off locations."); return; }
 
     try{

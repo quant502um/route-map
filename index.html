@@ -66,8 +66,8 @@
       </div>
 
       <div>
-       <label for="to">⛳ Drop-off point</label>
-<input id="to" placeholder="e.g., Four Seasons Hotel KL" />
+      <label for="to">⛳ Drop-off point</label>
+<select id="to"></select>
       </div>
 
       <div class="row2">
@@ -265,8 +265,8 @@ function populatePickups() {
   function formatMin(min){ return `${Math.round(min)} min`; }
 
  async function findRoute(){
-  const selectedOpt = el.to.options[el.to.selectedIndex];
-  const toQ = selectedOpt?.dataset?.query || "";
+  const toOpt = el.to.selectedOptions?.[0];
+  const toQ = toOpt?.dataset?.query || "";
   if (!toQ) { setStatus("Please select a destination."); return; }
 
   const from = { lat: PICKUP.lat, lon: PICKUP.lon, name: PICKUP.label };
@@ -463,7 +463,9 @@ const features = { ...lastRoute, hour, weekend, weather, rain, thunder, peak };
   [el.from, el.to].forEach(x => x.addEventListener("keydown", (e)=>{ if (e.key === "Enter") findRoute(); }));
 
   // Start
-  loadDataset();
+ populatePickups();
+populateDestinations();
+loadDataset();
 </script>
 </body>
 </html>

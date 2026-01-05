@@ -281,7 +281,30 @@ function populatePickups() {
     const rt = await routeOSRM(from,b);
     if (!rt) { setStatus("Route not found. Try different locations."); return; }
 
-    // map draw...
+// ---- draw markers ----
+fromMarker = L.marker([from.lat, from.lon])
+  .addTo(map)
+  .bindPopup("Pickup: " + from.name)
+  .openPopup();
+
+toMarker = L.marker([b.lat, b.lon])
+  .addTo(map)
+  .bindPopup("Drop-off: " + b.name);
+
+// ---- draw route line ----
+routeLine = L.geoJSON(rt.geojson, { weight: 5 }).addTo(map);
+map.fitBounds(routeLine.getBounds(), { padding: [30, 30] });
+
+// ---- save route stats ----
+const distance_km = rt.distance_m / 1000;
+const duration_min = rt.duration_s / 60;
+
+lastRoute = { distance_km, duration_min };
+
+el.distanceText.textContent = formatKm(distance_km);
+el.durationText.textContent = formatMin(duration_min);
+
+setStatus("Route ready. Click “Estimate & Compare”.");
   } catch (e){
     console.error(e);
     setStatus("Sorry—something went wrong.");

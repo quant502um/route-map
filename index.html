@@ -278,11 +278,13 @@ function populateDestinations(){
   function formatMin(min){ return `${Math.round(min)} min`; }
 
   async function findRoute(){
-  const fromQ = PICKUP_QUERY; // ★ここ重要：表示値じゃなく検索クエリを使う
+  const fromQ = el.from.value.trim();
 
-  // ★toQは「選択肢のdata-query」を優先
-  const toOpt = el.to.selectedOptions?.[0];
-  const toQ = (toOpt && toOpt.dataset && toOpt.dataset.query) ? toOpt.dataset.query : el.to.value.trim();
+// selectで選んだ option の dataset.query を使う
+const selectedOpt = el.to.options[el.to.selectedIndex];
+const toQ = (selectedOpt && selectedOpt.dataset && selectedOpt.dataset.query)
+  ? selectedOpt.dataset.query
+  : "";
 
   if (!fromQ || !toQ) { setStatus("Please select a destination."); return; }
 
@@ -577,6 +579,7 @@ el.estFareText.textContent = (est == null) ? "—" : rm(est);
   [el.from, el.to].forEach(x => x.addEventListener("keydown", (e)=>{ if (e.key === "Enter") findRoute(); }));
 
   // Start
+populateDestinations();
 loadDataset();
 loadModel();
 </script>

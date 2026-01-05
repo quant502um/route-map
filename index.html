@@ -184,6 +184,37 @@
     diffText: document.getElementById("diffText"),
     matchInfo: document.getElementById("matchInfo"),
   };
+  const PICKUP = {
+  label: "University of Tsukuba Malaysia (UTMy)",
+  // 地図用は “座標” を使うのが一番確実（後述）
+  lat: 3.1739,
+  lon: 101.6643
+};
+
+const DESTINATIONS = [
+  { label: "KLCC Twin Towers", value: "KLCC Twin Towers", query: "Petronas Twin Towers, Kuala Lumpur" },
+  { label: "KLIA", value: "KLIA", query: "Kuala Lumpur International Airport, Sepang" },
+  { label: "Mid Valley Mega Mall", value: "Mid Valley Mega Mall", query: "Mid Valley Megamall, Kuala Lumpur" },
+  { label: "Batu Caves Temple", value: "Batu Caves Temple", query: "Batu Caves, Selangor" },
+  { label: "Lalaport Bukit Bintang", value: "Lalaport Bukit Bintang", query: "LaLaport Bukit Bintang City Centre, Kuala Lumpur" },
+  { label: "Sunway Pyramid Mall", value: "Sunway Pyramid Mall", query: "Sunway Pyramid, Petaling Jaya" },
+  { label: "1 Mont Kiara", value: "1 Mont Kiara", query: "1 Mont Kiara, Kuala Lumpur" },
+  { label: "Laurel Residence", value: "Laurel Residence", query: "Laurel Residence, Kuala Lumpur" },
+  { label: "Taylor's University", value: "Taylor's University", query: "Taylor's University, Subang Jaya" },
+  { label: "1 Utama Shopping mall", value: "1 Utama Shopping mall", query: "1 Utama Shopping Centre, Petaling Jaya" }
+];
+
+function populateDestinations(){
+  el.to.innerHTML = '<option value="">Select destination</option>';
+  DESTINATIONS.forEach(d => {
+    const opt = document.createElement("option");
+    opt.value = d.value;        // ← モデル入力に使う（重要）
+    opt.textContent = d.label;  // 表示
+    opt.dataset.query = d.query;// 地図検索用
+    el.to.appendChild(opt);
+  });
+}
+
 
   function setStatus(msg){ el.status.textContent = msg; }
   function rm(x){ return x == null ? "—" : `RM ${Number(x).toFixed(2)}`; }
@@ -216,43 +247,29 @@
   function formatKm(km){ return `${km.toFixed(2)} km`; }
   function formatMin(min){ return `${Math.round(min)} min`; }
 
-  async function findRoute(){
-    const fromQ = el.from.value.trim();
-    const toQ = el.to.value.trim();
-    if (!fromQ || !toQ) { setStatus("Please enter both pickup and drop-off locations."); return; }
+ async function findRoute(){
+  const selectedOpt = el.to.options[el.to.selectedIndex];
+  const toQ = selectedOpt?.dataset?.query || "";
+  if (!toQ) { setStatus("Please select a destination."); return; }
 
-    try{
-      clearMap();
-      setStatus("Searching locations…");
-      const [a,b] = await Promise.all([geocode(fromQ), geocode(toQ)]);
-      if (!a) { setStatus("Pickup point not found. Try a more specific name."); return; }
-      if (!b) { setStatus("Drop-off point not found. Try a more specific name."); return; }
+  const from = { lat: PICKUP.lat, lon: PICKUP.lon, name: PICKUP.label };
 
-      setStatus("Calculating route…");
-      const rt = await routeOSRM(a,b);
-      if (!rt) { setStatus("Route not found. Try different locations."); return; }
+  try{
+    clearMap();
+    setStatus("Searching destination…");
+    const b = await geocode(toQ);
+    if (!b) { setStatus("Drop-off point not found. Try a more specific name."); return; }
 
-      fromMarker = L.marker([a.lat, a.lon]).addTo(map).bindPopup("Pickup").openPopup();
-      toMarker = L.marker([b.lat, b.lon]).addTo(map).bindPopup("Drop-off");
+    setStatus("Calculating route…");
+    const rt = await routeOSRM(from,b);
+    if (!rt) { setStatus("Route not found. Try different locations."); return; }
 
-      routeLine = L.geoJSON(rt.geojson, { style: { weight: 5, opacity: 0.85 } }).addTo(map);
-      map.fitBounds(routeLine.getBounds(), { padding:[30,30] });
-      setTimeout(() => map.invalidateSize(), 300);
-
-      const distance_km = rt.distance_m / 1000;
-      const duration_min = rt.duration_s / 60;
-
-      lastRoute = { distance_km, duration_min };
-
-      el.distanceText.textContent = formatKm(distance_km);
-      el.durationText.textContent = formatMin(duration_min);
-
-      setStatus("Route ready. Click “Estimate & Compare”.");
-    } catch(err){
-      console.error(err);
-      setStatus("Sorry—something went wrong. Please try again.");
-    }
+    // map draw...
+  } catch (e){
+    console.error(e);
+    setStatus("Sorry—something went wrong.");
   }
+}
 
   // =========================
   // Dataset: load CSV from repo (data.csv)

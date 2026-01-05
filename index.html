@@ -233,11 +233,6 @@ function populateDestinations(){
   });
 }
 
-  // Pickup表示はUTMyでも、地図検索用は別クエリにする
-const PICKUP_DISPLAY = "University of Tsukuba Malaysia (UTMy)";
-const PICKUP_QUERY   = "University of Tsukuba Malaysia, Kuala Lumpur, Malaysia"; 
-// ↑ここがヒットしないなら、もっと具体的に（例：建物名/住所）に変える
-
   function setStatus(msg){ el.status.textContent = msg; }
   function rm(x){ return x == null ? "—" : `RM ${Number(x).toFixed(2)}`; }
 

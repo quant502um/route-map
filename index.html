@@ -202,6 +202,11 @@
     diffText: document.getElementById("diffText"),
     matchInfo: document.getElementById("matchInfo"),
   };
+  // 表示はUTMy付き、検索はヒットしやすい文字列にする
+const PICKUP_LABEL = "University of Tsukuba Malaysia (UTMy)";
+const PICKUP_QUERY = "University of Tsukuba Malaysia, Kuala Lumpur"; 
+// ↑ここが重要。もしヒットしないなら "University of Tsukuba, Malaysia campus, Kuala Lumpur" とかに変更
+
   // ===== Destination master (Sheet名 / model名 と、地図検索用 query を分ける) =====
 const DESTINATIONS = [
   { label: "Mid Valley Mega Mall", modelName: "Mid Valley Mega Mall", query: "Mid Valley Megamall, Kuala Lumpur" },
@@ -282,7 +287,9 @@ function populateDestinations(){
 
   async function findRoute(){
  // const fromQ = el.from.value.trim();
-const fromQ = PICKUP_GEOCODE_QUERY;
+const fromQ = PICKUP_QUERY;
+console.log("fromQ:", fromQ);
+console.log("toQ:", toQ);
 
 
 // selectで選んだ option の dataset.query を使う

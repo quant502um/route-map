@@ -261,13 +261,16 @@ function populateDestinations(){
   function formatMin(min){ return `${Math.round(min)} min`; }
 
   async function findRoute(){
-    const fromQ = el.from.value.trim();
-   const selected = el.to.selectedOptions[0];
-const toQ = selected?.dataset?.query ? selected.dataset.query.trim() : "";
+  const fromQ = PICKUP_QUERY; // ★ここ重要：表示値じゃなく検索クエリを使う
 
-    if (!fromQ || !toQ) { setStatus("Please enter both pickup and drop-off locations."); return; }
+  // ★toQは「選択肢のdata-query」を優先
+  const toOpt = el.to.selectedOptions?.[0];
+  const toQ = (toOpt && toOpt.dataset && toOpt.dataset.query) ? toOpt.dataset.query : el.to.value.trim();
 
-    try{
+  if (!fromQ || !toQ) { setStatus("Please select a destination."); return; }
+
+  try{
+
       clearMap();
       setStatus("Searching locations…");
       const [a,b] = await Promise.all([geocode(fromQ), geocode(toQ)]);
@@ -318,6 +321,33 @@ async function loadModel(){
     console.error(err);
     modelLR = null;
   }
+}
+function populateDestinationsFromModel(){
+  // modelが無いと作れない
+  if (!modelLR || !Array.isArray(modelLR.columns)) return;
+
+  // Destination_ から始まる列を全部取る
+  const destCols = modelLR.columns.filter(c => c.startsWith("Destination_"));
+  const destNames = destCols.map(c => c.replace("Destination_", ""));
+
+  // select初期化
+  el.to.innerHTML = '<option value="">Select destination</option>';
+
+  destNames.forEach(name => {
+    const opt = document.createElement("option");
+
+    // ★モデル用：完全一致が必要なので value は「名前そのまま」
+    opt.value = name;
+
+    // ★地図検索用：data-queryに住所寄りの文字列を入れる
+    // まずは雑に "..., Malaysia" でOK。KLIAだけ例外で強くするのがコツ。
+    let q = `${name}, Kuala Lumpur, Malaysia`;
+    if (name.toLowerCase().includes("klia")) q = "Kuala Lumpur International Airport (KLIA), Sepang, Malaysia";
+
+    opt.dataset.query = q;
+    opt.textContent = name; // 表示名もそのままでOK（短くしたいならここで変える）
+    el.to.appendChild(opt);
+  });
 }
 
   let dataset = []; // normalized rows
@@ -497,7 +527,7 @@ const featuresForModel = {
   hour,
   weather,
   day: el.day.value,            // "Monday" など
-  destination: el.to.value.trim() // ここ重要！(※後で選択式にする)
+destination: el.to.value
 };
 console.log("featuresForModel", featuresForModel);
 console.log("modelLR", modelLR);
@@ -526,7 +556,6 @@ el.estFareText.textContent = (est == null) ? "—" : rm(est);
   // Start
 loadDataset();
 loadModel();
-populateDestinations();
 </script>
 </body>
 </html>

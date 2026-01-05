@@ -272,6 +272,23 @@
   // =========================
   // Dataset: load CSV from repo (data.csv)
   // =========================
+  // =========================
+// Model: load model.json (Linear Regression exported from Colab)
+// =========================
+let modelLR = null; // { intercept: number, coef: number[], columns: string[] }
+
+async function loadModel(){
+  try{
+    const res = await fetch("./model.json", { cache: "no-store" });
+    if (!res.ok) throw new Error("model.json not found");
+    modelLR = await res.json();
+    console.log("model loaded", modelLR);
+  } catch (err){
+    console.error(err);
+    modelLR = null;
+  }
+}
+
   let dataset = []; // normalized rows
 
   function parseCSV(text){
@@ -352,25 +369,46 @@ dataset = rows.map(r => {
   // =========================
   // Fare: Estimated (placeholder) + Actual from dataset
   // =========================
- function estimateFare({ distance_km, duration_min, peak, rain, thunder, weekend }){
-  const b0 = 4.50;
-  const bDist = 1.65;
-  const bDur = 0.28;
-  const bPeak = 2.00;
-  const bRain = 1.80;
-  const bThunder = 3.00;  // 仮
-  const bWeekend = 1.00;
+ function predictFareWithModel(features){
+  // features: { hour, weather, day, destination, ... } などから作る
+  if (!modelLR) return null;
 
-  return (
-    b0 +
-    bDist * distance_km +
-    bDur * duration_min +
-    bPeak * peak +
-    bRain * rain +
-    bThunder * thunder +
-    bWeekend * weekend
-  );
+  const cols = modelLR.columns;
+  const coef = modelLR.coef;
+  const intercept = modelLR.intercept;
+
+  // まず全部0で用意
+  const x = {};
+  cols.forEach(c => x[c] = 0);
+
+  // 1) Hour
+  if ("Hour" in x) x["Hour"] = Number(features.hour ?? 0);
+
+  // 2) Weather one-hot
+  // columns例: Weather_Rain, Weather_Thunder（Clearは基準で列が無い）
+  if (features.weather === "Rain" && ("Weather_Rain" in x)) x["Weather_Rain"] = 1;
+  if (features.weather === "Thunder" && ("Weather_Thunder" in x)) x["Weather_Thunder"] = 1;
+
+  // 3) Day one-hot
+  // columns例: Date (Day/Week)_Monday ... etc
+const dayKey = `Date (Day/week)_${features.day}`;
+  if (dayKey in x) x[dayKey] = 1;
+
+  // 4) Destination one-hot（列名に合わせる）
+  // columns例: Destination_Sunway Pyramid Mall みたいな形のはず
+  if (features.destination){
+    const destKey = `Destination_${features.destination}`;
+    if (destKey in x) x[destKey] = 1;
+  }
+
+  // 5) 予測（intercept + Σ coef[i]*x[col[i]])
+  let y = intercept;
+  for (let i = 0; i < cols.length; i++){
+    y += (Number(coef[i]) || 0) * (Number(x[cols[i]]) || 0);
+  }
+  return y;
 }
+
 
   function actualFareFromDataset(query){
     if (!dataset.length) return { value: null, used: 0, note: "Dataset missing." };
@@ -423,11 +461,20 @@ const peak = isPeakHour(hour);
 
 const features = { ...lastRoute, hour, weekend, weather, rain, thunder, peak };
 
-    const est = estimateFare(features);
+    // day と destination をモデル入力用に追加
+const featuresForModel = {
+  hour,
+  weather,
+  day: el.day.value,            // "Monday" など
+  destination: el.to.value.trim() // ここ重要！(※後で選択式にする)
+};
+
+const est = predictFareWithModel(featuresForModel);
+el.estFareText.textContent = (est == null) ? "—" : rm(est);
+
 
     const act = actualFareFromDataset(features);
 
-    el.estFareText.textContent = rm(est);
     el.actFareText.textContent = act.value == null ? "—" : rm(act.value);
     el.diffText.textContent = (act.value == null) ? "—" : rm(act.value - est);
 
@@ -444,7 +491,8 @@ const features = { ...lastRoute, hour, weekend, weather, rain, thunder, peak };
   [el.from, el.to].forEach(x => x.addEventListener("keydown", (e)=>{ if (e.key === "Enter") findRoute(); }));
 
   // Start
-  loadDataset();
+loadDataset();
+loadModel();
 </script>
 </body>
 </html>

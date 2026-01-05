@@ -206,15 +206,6 @@
 const PICKUP_DISPLAY = "University of Tsukuba Malaysia (UTMy)";
 const PICKUP_QUERY   = "University of Tsukuba Malaysia, Kuala Lumpur, Malaysia"; 
 // ↑ここがヒットしないなら、もっと具体的に（例：建物名/住所）に変える
-
-  // ここにあなたたちの10個の行き先を入れる（表示名と検索用住所）
-const DESTINATIONS = [
-  { label: "KL Sentral", modelName: "KL Sentral", query: "KL Sentral, Kuala Lumpur" },
-  { label: "Sunway Pyramid Mall", modelName: "Sunway Pyramid Mall", query: "Sunway Pyramid, Petaling Jaya" },
-  { label: "Mid Valley Mega Mall", modelName: "Mid Valley Mega Mall", query: "Mid Valley Megamall, Kuala Lumpur" },
-];
-
-
 // selectに選択肢を入れる
 function populateDestinations(){
   el.to.innerHTML = '<option value="">Select destination</option>';
@@ -314,11 +305,17 @@ let modelLR = null; // { intercept: number, coef: number[], columns: string[] }
 async function loadModel(){
   try{
     const res = await fetch("./model.json", { cache: "no-store" });
+    console.log("model.json status", res.status, res.url);
     if (!res.ok) throw new Error("model.json not found");
     modelLR = await res.json();
-    console.log("model loaded", modelLR);
+    console.log("model loaded ✅ columns:", modelLR.columns?.length);
+
+    const destCols = (modelLR.columns || []).filter(c => c.startsWith("Destination_"));
+    console.log("Destination cols ✅", destCols.length, destCols.slice(0,5));
+
+    populateDestinationsFromModel();
   } catch (err){
-    console.error(err);
+    console.error("loadModel failed ❌", err);
     modelLR = null;
   }
 }

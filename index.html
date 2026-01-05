@@ -202,6 +202,11 @@
     diffText: document.getElementById("diffText"),
     matchInfo: document.getElementById("matchInfo"),
   };
+  // Pickup表示はUTMyでも、地図検索用は別クエリにする
+const PICKUP_DISPLAY = "University of Tsukuba Malaysia (UTMy)";
+const PICKUP_QUERY   = "University of Tsukuba Malaysia, Kuala Lumpur, Malaysia"; 
+// ↑ここがヒットしないなら、もっと具体的に（例：建物名/住所）に変える
+
   // ここにあなたたちの10個の行き先を入れる（表示名と検索用住所）
 const DESTINATIONS = [
   { label: "KL Sentral", modelName: "KL Sentral", query: "KL Sentral, Kuala Lumpur" },

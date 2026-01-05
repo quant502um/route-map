@@ -62,7 +62,7 @@
     <div class="grid">
       <div>
        <label for="from">📍 Pickup point</label>
-<input id="from" placeholder="e.g., 28 Mont Kiara / KL Sentral" />
+<select id="from"></select>
       </div>
 
       <div>
@@ -203,6 +203,13 @@ const DESTINATIONS = [
   { label: "Taylor's University", value: "Taylor's University", query: "Taylor's University, Subang Jaya" },
   { label: "1 Utama Shopping mall", value: "1 Utama Shopping mall", query: "1 Utama Shopping Centre, Petaling Jaya" }
 ];
+const PICKUPS = [
+  {
+    label: "University of Tsukuba Malaysia (UTMy)",
+    value: "UTMy",
+    query: "University of Tsukuba Malaysia, Kuala Lumpur"
+  }
+];
 
 function populateDestinations(){
   el.to.innerHTML = '<option value="">Select destination</option>';
@@ -212,6 +219,16 @@ function populateDestinations(){
     opt.textContent = d.label;  // 表示
     opt.dataset.query = d.query;// 地図検索用
     el.to.appendChild(opt);
+  });
+}
+function populatePickups() {
+  el.from.innerHTML = "<option value=''>Select pickup</option>";
+  PICKUPS.forEach(p => {
+    const opt = document.createElement("option");
+    opt.value = p.value;
+    opt.textContent = p.label;
+    opt.dataset.query = p.query;
+    el.from.appendChild(opt);
   });
 }
 

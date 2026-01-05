@@ -390,6 +390,59 @@ dataset = rows.map(r => {
       el.matchInfo.textContent = "Add data.csv to show Actual fare.";
     }
   }
+  let MODEL = null;
+
+async function loadModel(){
+  try{
+    const res = await fetch("model.json", { cache: "no-store" });
+    if (!res.ok) throw new Error("model.json not found");
+    MODEL = await res.json();
+    setStatus("Model loaded.");
+  } catch(e){
+    console.error(e);
+    MODEL = null;
+    setStatus("Model not loaded. Please add model.json to the repo.");
+  }
+}
+
+function buildFeatureVectorForModel({ hour, rain, thunder, weekend, destinationValue }) {
+  if (!MODEL) return null;
+
+  const x = new Array(MODEL.columns.length).fill(0);
+
+  for (let i = 0; i < MODEL.columns.length; i++) {
+    const col = MODEL.columns[i];
+
+    // 数値系
+    if (col === "Hour") x[i] = Number(hour ?? 0);
+
+    // 天気（あなたの学習時の列名に合わせる）
+    else if (col === "Weather_Rain") x[i] = Number(rain ?? 0);
+    else if (col === "Weather_Thunder") x[i] = Number(thunder ?? 0);
+
+    // 曜日（Weekend列を作ってる場合）
+    else if (col === "Weekend") x[i] = Number(weekend ?? 0);
+
+    // 目的地 one-hot (例: Destination_KLCC Twin Towers)
+    else if (col.startsWith("Destination_")) {
+      const name = col.replace("Destination_", "");
+      x[i] = (destinationValue === name) ? 1 : 0;
+    }
+
+    // Monday~Sunday の one-hot を使って学習してる場合（例: Date (Day/week)_Monday）
+    else if (col.includes("Monday")) x[i] = (window._dayName === "Monday") ? 1 : 0;
+    else if (col.includes("Tuesday")) x[i] = (window._dayName === "Tuesday") ? 1 : 0;
+    else if (col.includes("Wednesday")) x[i] = (window._dayName === "Wednesday") ? 1 : 0;
+    else if (col.includes("Thursday")) x[i] = (window._dayName === "Thursday") ? 1 : 0;
+    else if (col.includes("Friday")) x[i] = (window._dayName === "Friday") ? 1 : 0;
+    else if (col.includes("Saturday")) x[i] = (window._dayName === "Saturday") ? 1 : 0;
+    else if (col.includes("Sunday")) x[i] = (window._dayName === "Sunday") ? 1 : 0;
+
+    // それ以外の列があればここで追加していく
+  }
+
+  return x;
+}
 
   // =========================
   // Fare: Estimated (placeholder) + Actual from dataset
@@ -465,7 +518,37 @@ const peak = isPeakHour(hour);
 
 const features = { ...lastRoute, hour, weekend, weather, rain, thunder, peak };
 
-    const est = estimateFare(features);
+// 選んだ目的地（value）を取る
+const destValue = el.to.value;
+
+// day名を buildFeatureVector が参照できるように一時保存（簡易）
+window._dayName = el.day.value;
+
+if (!MODEL){
+  setStatus("Model missing. Please add model.json.");
+  return;
+}
+
+const x = buildFeatureVectorForModel({
+  hour,
+  rain,
+  thunder,
+  weekend,
+  destinationValue: destValue
+});
+
+if (!x){
+  setStatus("Failed to build model inputs.");
+  return;
+}
+
+// 線形回帰: y = intercept + sum(x_i * coef_i)
+let y = Number(MODEL.intercept || 0);
+for (let i = 0; i < x.length; i++){
+  y += x[i] * Number(MODEL.coef[i] || 0);
+}
+
+const est = y;
 
     const act = actualFareFromDataset(features);
 
@@ -484,9 +567,9 @@ const features = { ...lastRoute, hour, weekend, weather, rain, thunder, peak };
   el.btnEstimate.addEventListener("click", estimateAndCompare);
 
   // Start
- populatePickups();
-populateDestinations();
+// Start
 loadDataset();
+loadModel();
 </script>
 </body>
 </html>

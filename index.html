@@ -172,8 +172,8 @@ populate();
       const routeData = await osrm.json();
       const r = routeData.routes[0];
 
-      L.geoJSON(r.geometry).addTo(map);
-      map.fitBounds(L.geoJSON(r.geometry).getBounds());
+      const line = L.geoJSON(r.geometry).addTo(map);
+      map.fitBounds(line.getBounds());
 
       lastRoute = { km: r.distance/1000, min: r.duration/60 };
       el.distanceText.textContent = lastRoute.km.toFixed(2) + " km";

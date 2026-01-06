@@ -46,11 +46,31 @@
     #mapPanel { padding: 0; overflow:hidden; }
     #map { width: 100%; height: calc(100vh - 70px - 28px); min-height: 520px; }
     @media (max-width: 980px){ #map { height: 520px; } }
-    /* ===== FORCE 2-column layout (FINAL) ===== */
-.wrap { display:flex; gap:16px; align-items:stretch; }
-.panel { width:380px; flex:0 0 380px; }
-.mapWrap { flex:1 1 auto; min-width:0; }
-#map { width:100%; min-height:640px; height:calc(100vh - 160px); border-radius:14px; }
+   /* ===== FORCE 2-column layout (FINAL) ===== */
+.wrap{
+  display:flex !important;
+  flex-direction:row !important;
+  gap:16px !important;
+  align-items:stretch !important;
+  width:100% !important;
+}
+
+.panel{
+  width:380px !important;
+  flex:0 0 380px !important;
+}
+
+.mapWrap{
+  flex:1 1 auto !important;
+  min-width:0 !important;
+}
+
+#map{
+  width:100% !important;
+  height:calc(100vh - 160px) !important;
+  min-height:640px !important;
+  border-radius:14px !important;
+}
   </style>
 </head>
 

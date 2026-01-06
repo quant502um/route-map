@@ -255,7 +255,23 @@ async function loadModel(){
     return { lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon), name: data[0].display_name };
   }
 const FIXED_PLACES = {
-  "KLIA": { lat: 2.786557, lon: 101.688872, name: "KLIA Terminal 1" }
+  "KLIA": {
+    lat: 2.786557,
+    lon: 101.688872,
+    name: "KLIA Terminal 1"
+  },
+
+  "1 Utama Shopping mall": {
+    lat: 3.149771,
+    lon: 101.615390,
+    name: "1 Utama Shopping Centre"
+  },
+
+  "Laurel Residence": {
+    lat: 3.173990,
+    lon: 101.664070,
+    name: "Laurel Residence Mont Kiara"
+  }
 };
 
 async function getLocation(q){

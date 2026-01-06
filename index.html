@@ -508,15 +508,6 @@ el.to && el.to.addEventListener("change", () => findRoute());
   // Start
   loadDataset();
   loadModel();
-  document.addEventListener("DOMContentLoaded", () => {
-  const t = document.getElementById("time");
-  if (t && !t.value) {
-    const now = new Date();
-    const hh = String(now.getHours()).padStart(2, "0");
-    const mm = String(now.getMinutes()).padStart(2, "0");
-    t.value = `${hh}:${mm}`;
-  }
-});
 </script>
 </body>
 </html>

@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -151,7 +152,6 @@
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
   // =========================
   // Map + Routing (Leaflet + OSM + OSRM)
   // =========================
@@ -422,23 +422,15 @@ const features = { ...lastRoute, hour, weekend, weather, rain, thunder, peak };
   }
 
   // =========================
- // =========================
-// Wire events
-// =========================
-el.btnRoute.addEventListener("click", findRoute);
-el.btnEstimate.addEventListener("click", estimateAndCompare);
+  // Wire events
+  // =========================
+  el.btnRoute.addEventListener("click", findRoute);
+  el.btnEstimate.addEventListener("click", estimateAndCompare);
 
-// どっちか変えたら自動でルート再計算したいならこれ（任意）
-[el.from, el.to].forEach(sel => sel.addEventListener("change", () => {
-  // すでにルートがあれば更新したい場合だけ
-  // findRoute();
-}));
+  [el.from, el.to].forEach(x => x.addEventListener("keydown", (e)=>{ if (e.key === "Enter") findRoute(); }));
 
-// =========================
-// Start
-// =========================
-populatePickups();
-populateDestinations();
+  // Start
+  loadDataset();
 </script>
 </body>
 </html>

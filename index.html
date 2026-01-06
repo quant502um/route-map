@@ -234,13 +234,6 @@ async function loadModel(){
     diffText: document.getElementById("diffText"),
     matchInfo: document.getElementById("matchInfo"),
   };
-// const el = { ... } の直後に追加
-if (el.time && !el.time.value) {
-  const now = new Date();
-  const hh = String(now.getHours()).padStart(2, "0");
-  const mm = String(now.getMinutes()).padStart(2, "0");
-  el.time.value = `${hh}:${mm}`;
-}
 
   function setStatus(msg){ el.status.textContent = msg; }
   function rm(x){ return x == null ? "—" : `RM ${Number(x).toFixed(2)}`; }

@@ -182,8 +182,6 @@
     diffText: document.getElementById("diffText"),
     matchInfo: document.getElementById("matchInfo"),
   };
-  populatePickups();
-populateDestinations();
 
   const PICKUP = {
   label: "University of Tsukuba Malaysia (UTMy)",
@@ -234,7 +232,8 @@ function populateDestinations(){
     el.to.appendChild(opt);
   });
 }
-
+  populatePickups();
+populateDestinations();
 
   function setStatus(msg){ el.status.textContent = msg; }
   function rm(x){ return x == null ? "—" : `RM ${Number(x).toFixed(2)}`; }

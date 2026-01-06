@@ -439,7 +439,7 @@ const features = { ...lastRoute, hour, weekend, weather, rain, thunder, peak };
   el.btnRoute.addEventListener("click", findRoute);
   el.btnEstimate.addEventListener("click", estimateAndCompare);
 
-  [el.from, el.to].forEach(x => x.addEventListener("keydown", (e)=>{ if (e.key === "Enter") findRoute(); }));
+el.to && el.to.addEventListener("change", () => findRoute());
 
   // Start
   loadDataset();

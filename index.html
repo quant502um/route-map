@@ -90,14 +90,23 @@ button { cursor:pointer; font-weight: 600; }
       <div>
        <label for="from">📍 Pickup point</label>
 <input id="from" value="University of Tsukuba Malaysia (UTMy)" readonly />
- <label for="to">⛳ Drop-off point</label>
-<option value="KLCC, Kuala Lumpur City Centre, Kuala Lumpur">KLCC Twin Towers</option>
-<option value="1 Mont Kiara, Mont Kiara, Kuala Lumpur">1 Mont Kiara</option>
-<option value="Sunway Pyramid, Bandar Sunway, Petaling Jaya">Sunway Pyramid Mall</option>
-<option value="Lalaport Bukit Bintang City Centre, Kuala Lumpur">Lalaport Bukit Bintang</option>
-<option value="Batu Caves, Selangor">Batu Caves Temple</option>
-<option value="Taylor's University Lakeside Campus, Subang Jaya">Taylor's University</option>
+<label for="to">⛳ Drop-off point</label>
+<select id="to">
+  <option value="" disabled selected>Select a destination</option>
 
+  <option value="Sunway Pyramid, Bandar Sunway, Petaling Jaya">Sunway Pyramid Mall</option>
+  <option value="Mid Valley Megamall, Lingkaran Syed Putra, Kuala Lumpur">Mid Valley Mega Mall</option>
+  <option value="KLCC, Kuala Lumpur City Centre, Kuala Lumpur">KLCC Twin Towers</option>
+  <option value="1 Mont Kiara, Mont Kiara, Kuala Lumpur">1 Mont Kiara</option>
+  <option value="Lalaport Bukit Bintang City Centre, Kuala Lumpur">Lalaport Bukit Bintang</option>
+
+  <option value="KLIA Terminal 1">KLIA</option>
+
+  <option value="1 Utama Shopping Centre, Bandar Utama, Petaling Jaya">1 Utama Shopping mall</option>
+  <option value="Laurel Residence, Bangsar South, Kuala Lumpur">Laurel Residence</option>
+  <option value="Taylor's University Lakeside Campus, Subang Jaya">Taylor's University</option>
+  <option value="Batu Caves, Selangor">Batu Caves Temple</option>
+</select>
 
       <div class="row2">
         <div>

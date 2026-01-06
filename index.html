@@ -43,6 +43,7 @@ button { cursor:pointer; font-weight: 600; }
 .row2 { display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
 .tiny { font-size: 12px; color: var(--muted); margin-top: 6px; line-height: 1.4; }
 
+/* ===== 2-column layout (PC) ===== */
 .wrap{
   display:flex;
   gap:16px;
@@ -57,14 +58,20 @@ button { cursor:pointer; font-weight: 600; }
 
 .mapWrap{
   flex:1 1 auto;
-  min-width:0; /* これ超大事。横幅計算の崩れ防止 */
+  min-width:0;
 }
 
 #map{
   width:100%;
   min-height:640px;
-  height:calc(100vh - 160px);
+  height: calc(100vh - 160px);
   border-radius:14px;
+}
+
+/* スマホだけ縦にしたいなら（任意） */
+@media (max-width: 700px){
+  .wrap{ flex-direction: column; }
+  #map{ height: 520px; min-height: 520px; }
 }
   </style>
 </head>

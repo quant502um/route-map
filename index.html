@@ -63,13 +63,21 @@
     <div class="grid">
       <div>
        <label for="from">📍 Pickup point</label>
-<input id="from" placeholder="e.g., 28 Mont Kiara / KL Sentral" />
-      </div>
-
-      <div>
+<input id="pickupFixed" type="text" value="University of Tsukuba Malaysia (UTMy)" readonly />      </div>
        <label for="to">⛳ Drop-off point</label>
-<input id="to" placeholder="e.g., Four Seasons Hotel KL" />
-      </div>
+<select id="dropoffSelect">
+  <option value="" selected disabled>Select a destination</option>
+  <option value="Sunway Pyramid Mall">Sunway Pyramid Mall</option>
+  <option value="Mid Valley Mega Mall">Mid Valley Mega Mall</option>
+  <option value="KLCC Twin Towers">KLCC Twin Towers</option>
+  <option value="1 Mont Kiara">1 Mont Kiara</option>
+  <option value="Lalaport Bukit Bintang">Lalaport Bukit Bintang</option>
+  <option value="KLIA">KLIA</option>
+  <option value="1 Utama Shopping Mall">1 Utama Shopping Mall</option>
+  <option value="Laurel Residence">Laurel Residence</option>
+  <option value="Taylor's University">Taylor's University</option>
+  <option value="Batu Caves Temple">Batu Caves Temple</option>
+</select>
 
       <div class="row2">
         <div>
@@ -218,9 +226,13 @@
   function formatMin(min){ return `${Math.round(min)} min`; }
 
   async function findRoute(){
-    const fromQ = el.from.value.trim();
-    const toQ = el.to.value.trim();
-    if (!fromQ || !toQ) { setStatus("Please enter both pickup and drop-off locations."); return; }
+   const fromQ = "University of Tsukuba Malaysia, Kuala Lumpur";
+const toQ = el.to.value.trim();
+
+if (!toQ) {
+  setStatus("Please select a drop-off location.");
+  return;
+}
 
     try{
       clearMap();

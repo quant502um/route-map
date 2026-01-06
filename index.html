@@ -264,8 +264,15 @@ const FIXED_PLACES = {
 
 async function getLocation(q){
   if (FIXED_PLACES[q]) return FIXED_PLACES[q];
+
+  const key = Object.keys(FIXED_PLACES).find(k =>
+    k.toLowerCase() === q.toLowerCase() || q.toLowerCase().includes(k.toLowerCase())
+  );
+  if (key) return FIXED_PLACES[key];
+
   return await geocode(q);
 }
+
 
   async function routeOSRM(from, to){
     const url = `https://router.project-osrm.org/route/v1/driving/${from.lon},${from.lat};${to.lon},${to.lat}?overview=full&geometries=geojson`;

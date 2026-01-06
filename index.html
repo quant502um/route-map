@@ -46,11 +46,10 @@
     #mapPanel { padding: 0; overflow:hidden; }
     #map { width: 100%; height: calc(100vh - 70px - 28px); min-height: 520px; }
     @media (max-width: 980px){ #map { height: 520px; } }
-  </style>
-</head>
-/* FORCE 2-column layout */
+    /* ===== FORCE 2-column layout (FINAL) ===== */
 .wrap {
   display: flex !important;
+  flex-direction: row !important;
   gap: 16px !important;
   align-items: stretch !important;
 }
@@ -71,6 +70,8 @@
   height: calc(100vh - 160px) !important;
   border-radius: 14px !important;
 }
+  </style>
+</head>
 
 <body>
 <header>

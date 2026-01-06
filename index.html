@@ -490,9 +490,10 @@ const features = { ...lastRoute, hour, weekend, weather, rain, thunder, peak };
 
   // Start
   // Start
-populatePickups();
-populateDestinations();
-loadDataset();
+window.addEventListener("DOMContentLoaded", () => {
+  populatePickups();
+  populateDestinations();
+});
 </script>
 </body>
 </html>

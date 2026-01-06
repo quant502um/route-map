@@ -48,6 +48,29 @@
     @media (max-width: 980px){ #map { height: 520px; } }
   </style>
 </head>
+/* ===== Layout ===== */
+.wrap {
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.panel {
+  width: 380px;
+  flex: 0 0 380px;
+}
+
+.mapWrap {
+  flex: 1;
+}
+
+/* ===== Map ===== */
+#map {
+  width: 100%;
+  min-height: 640px;
+  height: calc(100vh - 160px);
+  border-radius: 14px;
+}
 
 <body>
 <header>
@@ -153,12 +176,11 @@
     </div>
   </div>
 
-  <!-- Right panel -->
-  <div class="panel" id="mapPanel">
+  <!-- Right map -->
+  <div class="mapWrap">
     <div id="map"></div>
   </div>
 </div>
-
 <script>
   // =========================
   // Map + Routing (Leaflet + OSM + OSRM)

@@ -254,24 +254,13 @@ async function loadModel(){
     return { lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon), name: data[0].display_name };
   }
 const FIXED_PLACES = {
-  "KLIA": {
-    lat: 2.786557,
-    lon: 101.688872,
-    name: "KLIA Terminal 1"
-  },
+  "UTMy": { lat: 3.120071, lon: 101.666759, name: "University of Tsukuba Malaysia" },
 
-  "1 Utama Shopping mall": {
-    lat: 3.149771,
-    lon: 101.615390,
-    name: "1 Utama Shopping Centre"
-  },
-
-  "Laurel Residence": {
-    lat: 3.173990,
-    lon: 101.664070,
-    name: "Laurel Residence Mont Kiara"
-  }
+  "KLIA (Terminal 1)": { lat: 2.786557, lon: 101.688872, name: "KLIA Terminal 1" },
+  "1 Utama Shopping Centre, Bandar Utama, Petaling Jaya": { lat: 3.149771, lon: 101.615390, name: "1 Utama Shopping Centre" },
+  "Laurel Residence Mont Kiara, Kuala Lumpur": { lat: 3.173990, lon: 101.664070, name: "Laurel Residence Mont Kiara" },
 };
+
 
 async function getLocation(q){
   if (FIXED_PLACES[q]) return FIXED_PLACES[q];
@@ -302,7 +291,7 @@ if (!toQ) {
     try{
       clearMap();
       setStatus("Searching locations…");
-      const [a,b] = await Promise.all([geocode(fromQ), getLocation(toQ)]);
+      const [a,b] = await Promise.all([getLocation("UTMy"), getLocation(toQ)]);
       if (!a) { setStatus("Pickup point not found. Try a more specific name."); return; }
       if (!b) { setStatus("Drop-off point not found. Try a more specific name."); return; }
 

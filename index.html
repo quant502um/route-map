@@ -134,10 +134,25 @@
     { label: "1 Utama Shopping mall", value: "1Utama", query: "1 Utama Shopping Centre" }
   ];
 
-  function populate(){
-    PICKUPS.forEach(p => { let o=new Option(p.label, p.value); o.dataset.query=p.query; el.from.add(o); });
-    DESTINATIONS.forEach(d => { let o=new Option(d.label, d.value); o.dataset.query=d.query; el.to.add(o); });
-  }
+function populate() {
+  // Pickup
+  el.from.innerHTML = '<option value="">Select pickup</option>';
+  PICKUPS.forEach(p => {
+    const o = new Option(p.label, p.value);
+    o.dataset.query = p.query;
+    el.from.add(o);
+  });
+
+  // Destination
+  el.to.innerHTML = '<option value="">Select destination</option>';
+  DESTINATIONS.forEach(d => {
+    const o = new Option(d.label, d.value);
+    o.dataset.query = d.query;
+    el.to.add(o);
+  });
+}
+populate();
+
 
   let lastRoute = null;
 
@@ -195,7 +210,9 @@
     el.estFareText.textContent = "RM " + fare.toFixed(2);
   };
 
-  populate();
+populatePickups();
+populateDestinations();
+loadModel();   // ← model.json
 </script>
 </body>
 </html>

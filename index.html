@@ -474,9 +474,25 @@ const weather =
 
 const rain = (weather === "Rain") ? 1 : 0;
 const thunder = (weather === "Thunder") ? 1 : 0;
-const peak = isPeakHour(hour);
+function isPeakHour(hour){ ... }
 
 const features = { ...lastRoute, hour, weekend, weather, rain, thunder, peak };
+console.log("FEATURES USED IN WEB:", features);
+
+if (model && model.coefficients) {
+  let y = Number(model.intercept || 0);
+  const terms = [];
+  for (const [k, v] of Object.entries(model.coefficients)) {
+const x = Number(features[k] ?? 0);
+    const c = Number(v);
+    const contrib = c * x;
+    terms.push({ k, x, c, contrib });
+    y += contrib;
+  }
+  terms.sort((a,b)=>Math.abs(b.contrib)-Math.abs(a.contrib));
+  console.table(terms);
+  console.log("PRED_WEB:", y);
+}
 
     const est = estimateFare(features);
 

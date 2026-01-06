@@ -185,6 +185,19 @@ button { cursor:pointer; font-weight: 600; }
   </div>
 </div>
 <script>
+  let model = null;
+
+async function loadModel(){
+  try{
+    const res = await fetch("./model.json", { cache: "no-store" });
+    if (!res.ok) throw new Error("model.json not found");
+    model = await res.json();
+    console.log("✅ model.json loaded:", model);
+  } catch(e){
+    console.warn("⚠️ model.json not loaded:", e);
+    model = null;
+  }
+}
   // =========================
   // Map + Routing (Leaflet + OSM + OSRM)
   // =========================
@@ -377,24 +390,20 @@ dataset = rows.map(r => {
   // =========================
   // Fare: Estimated (placeholder) + Actual from dataset
   // =========================
- function estimateFare({ distance_km, duration_min, peak, rain, thunder, weekend }){
-  const b0 = 4.50;
-  const bDist = 1.65;
-  const bDur = 0.28;
-  const bPeak = 2.00;
-  const bRain = 1.80;
-  const bThunder = 3.00;  // 仮
-  const bWeekend = 1.00;
+ function estimateFare(feat){
+  // model.json があるならそれを使う
+  if (model && model.coefficients){
+    let y = Number(model.intercept || 0);
 
-  return (
-    b0 +
-    bDist * distance_km +
-    bDur * duration_min +
-    bPeak * peak +
-    bRain * rain +
-    bThunder * thunder +
-    bWeekend * weekend
-  );
+    for (const [k, v] of Object.entries(model.coefficients)){
+      y += Number(v) * Number(feat[k] ?? 0);
+    }
+    return y;
+  }
+
+  // フォールバック（model.json が読めない時）
+  const b0 = 4.50, bDist = 1.65, bDur = 0.28, bPeak = 2.00, bRain = 1.80, bThunder = 3.00;
+  return b0 + bDist*feat.distance_km + bDur*feat.duration_min + bPeak*feat.peak + bRain*feat.rain + bThunder*feat.thunder;
 }
 
   function actualFareFromDataset(query){
@@ -470,6 +479,7 @@ el.to && el.to.addEventListener("change", () => findRoute());
 
   // Start
   loadDataset();
+  loadModel();
 </script>
 </body>
 </html>

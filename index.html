@@ -62,12 +62,12 @@
     <div class="grid">
       <div>
        <label for="from">📍 Pickup point</label>
-<select id="from"></select>
+<input id="from" placeholder="e.g., 28 Mont Kiara / KL Sentral" />
       </div>
 
       <div>
-      <label for="to">⛳ Drop-off point</label>
-<select id="to"></select>
+       <label for="to">⛳ Drop-off point</label>
+<input id="to" placeholder="e.g., Four Seasons Hotel KL" />
       </div>
 
       <div class="row2">
@@ -184,54 +184,6 @@
     diffText: document.getElementById("diffText"),
     matchInfo: document.getElementById("matchInfo"),
   };
-  const PICKUP = {
-  label: "University of Tsukuba Malaysia (UTMy)",
-  // 地図用は “座標” を使うのが一番確実（後述）
-  lat: 3.1739,
-  lon: 101.6643
-};
-
-const DESTINATIONS = [
-  { label: "KLCC Twin Towers", value: "KLCC Twin Towers", query: "Petronas Twin Towers, Kuala Lumpur" },
-  { label: "KLIA", value: "KLIA", query: "Kuala Lumpur International Airport, Sepang" },
-  { label: "Mid Valley Mega Mall", value: "Mid Valley Mega Mall", query: "Mid Valley Megamall, Kuala Lumpur" },
-  { label: "Batu Caves Temple", value: "Batu Caves Temple", query: "Batu Caves, Selangor" },
-  { label: "Lalaport Bukit Bintang", value: "Lalaport Bukit Bintang", query: "LaLaport Bukit Bintang City Centre, Kuala Lumpur" },
-  { label: "Sunway Pyramid Mall", value: "Sunway Pyramid Mall", query: "Sunway Pyramid, Petaling Jaya" },
-  { label: "1 Mont Kiara", value: "1 Mont Kiara", query: "1 Mont Kiara, Kuala Lumpur" },
-  { label: "Laurel Residence", value: "Laurel Residence", query: "Laurel Residence, Kuala Lumpur" },
-  { label: "Taylor's University", value: "Taylor's University", query: "Taylor's University, Subang Jaya" },
-  { label: "1 Utama Shopping mall", value: "1 Utama Shopping mall", query: "1 Utama Shopping Centre, Petaling Jaya" }
-];
-const PICKUPS = [
-  {
-    label: "University of Tsukuba Malaysia (UTMy)",
-    value: "UTMy",
-    query: "University of Tsukuba Malaysia, Kuala Lumpur"
-  }
-];
-
-function populateDestinations(){
-  el.to.innerHTML = '<option value="">Select destination</option>';
-  DESTINATIONS.forEach(d => {
-    const opt = document.createElement("option");
-    opt.value = d.value;        // ← モデル入力に使う（重要）
-    opt.textContent = d.label;  // 表示
-    opt.dataset.query = d.query;// 地図検索用
-    el.to.appendChild(opt);
-  });
-}
-function populatePickups() {
-  el.from.innerHTML = "<option value=''>Select pickup</option>";
-  PICKUPS.forEach(p => {
-    const opt = document.createElement("option");
-    opt.value = p.value;
-    opt.textContent = p.label;
-    opt.dataset.query = p.query;
-    el.from.appendChild(opt);
-  });
-}
-
 
   function setStatus(msg){ el.status.textContent = msg; }
   function rm(x){ return x == null ? "—" : `RM ${Number(x).toFixed(2)}`; }
@@ -264,52 +216,43 @@ function populatePickups() {
   function formatKm(km){ return `${km.toFixed(2)} km`; }
   function formatMin(min){ return `${Math.round(min)} min`; }
 
- async function findRoute(){
-  const toOpt = el.to.selectedOptions?.[0];
-  const toQ = toOpt?.dataset?.query || "";
-  if (!toQ) { setStatus("Please select a destination."); return; }
+  async function findRoute(){
+    const fromQ = el.from.value.trim();
+    const toQ = el.to.value.trim();
+    if (!fromQ || !toQ) { setStatus("Please enter both pickup and drop-off locations."); return; }
 
-  const from = { lat: PICKUP.lat, lon: PICKUP.lon, name: PICKUP.label };
+    try{
+      clearMap();
+      setStatus("Searching locations…");
+      const [a,b] = await Promise.all([geocode(fromQ), geocode(toQ)]);
+      if (!a) { setStatus("Pickup point not found. Try a more specific name."); return; }
+      if (!b) { setStatus("Drop-off point not found. Try a more specific name."); return; }
 
-  try{
-    clearMap();
-    setStatus("Searching destination…");
-    const b = await geocode(toQ);
-    if (!b) { setStatus("Drop-off point not found. Try a more specific name."); return; }
+      setStatus("Calculating route…");
+      const rt = await routeOSRM(a,b);
+      if (!rt) { setStatus("Route not found. Try different locations."); return; }
 
-    setStatus("Calculating route…");
-    const rt = await routeOSRM(from,b);
-    if (!rt) { setStatus("Route not found. Try different locations."); return; }
+      fromMarker = L.marker([a.lat, a.lon]).addTo(map).bindPopup("Pickup").openPopup();
+      toMarker = L.marker([b.lat, b.lon]).addTo(map).bindPopup("Drop-off");
 
-// ---- draw markers ----
-fromMarker = L.marker([from.lat, from.lon])
-  .addTo(map)
-  .bindPopup("Pickup: " + from.name)
-  .openPopup();
+      routeLine = L.geoJSON(rt.geojson, { style: { weight: 5, opacity: 0.85 } }).addTo(map);
+      map.fitBounds(routeLine.getBounds(), { padding:[30,30] });
+      setTimeout(() => map.invalidateSize(), 300);
 
-toMarker = L.marker([b.lat, b.lon])
-  .addTo(map)
-  .bindPopup("Drop-off: " + b.name);
+      const distance_km = rt.distance_m / 1000;
+      const duration_min = rt.duration_s / 60;
 
-// ---- draw route line ----
-routeLine = L.geoJSON(rt.geojson, { weight: 5 }).addTo(map);
-map.fitBounds(routeLine.getBounds(), { padding: [30, 30] });
+      lastRoute = { distance_km, duration_min };
 
-// ---- save route stats ----
-const distance_km = rt.distance_m / 1000;
-const duration_min = rt.duration_s / 60;
+      el.distanceText.textContent = formatKm(distance_km);
+      el.durationText.textContent = formatMin(duration_min);
 
-lastRoute = { distance_km, duration_min };
-
-el.distanceText.textContent = formatKm(distance_km);
-el.durationText.textContent = formatMin(duration_min);
-
-setStatus("Route ready. Click “Estimate & Compare”.");
-  } catch (e){
-    console.error(e);
-    setStatus("Sorry—something went wrong.");
+      setStatus("Route ready. Click “Estimate & Compare”.");
+    } catch(err){
+      console.error(err);
+      setStatus("Sorry—something went wrong. Please try again.");
+    }
   }
-}
 
   // =========================
   // Dataset: load CSV from repo (data.csv)
@@ -390,59 +333,6 @@ dataset = rows.map(r => {
       el.matchInfo.textContent = "Add data.csv to show Actual fare.";
     }
   }
-  let MODEL = null;
-
-async function loadModel(){
-  try{
-    const res = await fetch("model.json", { cache: "no-store" });
-    if (!res.ok) throw new Error("model.json not found");
-    MODEL = await res.json();
-    setStatus("Model loaded.");
-  } catch(e){
-    console.error(e);
-    MODEL = null;
-    setStatus("Model not loaded. Please add model.json to the repo.");
-  }
-}
-
-function buildFeatureVectorForModel({ hour, rain, thunder, weekend, destinationValue }) {
-  if (!MODEL) return null;
-
-  const x = new Array(MODEL.columns.length).fill(0);
-
-  for (let i = 0; i < MODEL.columns.length; i++) {
-    const col = MODEL.columns[i];
-
-    // 数値系
-    if (col === "Hour") x[i] = Number(hour ?? 0);
-
-    // 天気（あなたの学習時の列名に合わせる）
-    else if (col === "Weather_Rain") x[i] = Number(rain ?? 0);
-    else if (col === "Weather_Thunder") x[i] = Number(thunder ?? 0);
-
-    // 曜日（Weekend列を作ってる場合）
-    else if (col === "Weekend") x[i] = Number(weekend ?? 0);
-
-    // 目的地 one-hot (例: Destination_KLCC Twin Towers)
-    else if (col.startsWith("Destination_")) {
-      const name = col.replace("Destination_", "");
-      x[i] = (destinationValue === name) ? 1 : 0;
-    }
-
-    // Monday~Sunday の one-hot を使って学習してる場合（例: Date (Day/week)_Monday）
-    else if (col.includes("Monday")) x[i] = (window._dayName === "Monday") ? 1 : 0;
-    else if (col.includes("Tuesday")) x[i] = (window._dayName === "Tuesday") ? 1 : 0;
-    else if (col.includes("Wednesday")) x[i] = (window._dayName === "Wednesday") ? 1 : 0;
-    else if (col.includes("Thursday")) x[i] = (window._dayName === "Thursday") ? 1 : 0;
-    else if (col.includes("Friday")) x[i] = (window._dayName === "Friday") ? 1 : 0;
-    else if (col.includes("Saturday")) x[i] = (window._dayName === "Saturday") ? 1 : 0;
-    else if (col.includes("Sunday")) x[i] = (window._dayName === "Sunday") ? 1 : 0;
-
-    // それ以外の列があればここで追加していく
-  }
-
-  return x;
-}
 
   // =========================
   // Fare: Estimated (placeholder) + Actual from dataset
@@ -518,37 +408,7 @@ const peak = isPeakHour(hour);
 
 const features = { ...lastRoute, hour, weekend, weather, rain, thunder, peak };
 
-// 選んだ目的地（value）を取る
-const destValue = el.to.value;
-
-// day名を buildFeatureVector が参照できるように一時保存（簡易）
-window._dayName = el.day.value;
-
-if (!MODEL){
-  setStatus("Model missing. Please add model.json.");
-  return;
-}
-
-const x = buildFeatureVectorForModel({
-  hour,
-  rain,
-  thunder,
-  weekend,
-  destinationValue: destValue
-});
-
-if (!x){
-  setStatus("Failed to build model inputs.");
-  return;
-}
-
-// 線形回帰: y = intercept + sum(x_i * coef_i)
-let y = Number(MODEL.intercept || 0);
-for (let i = 0; i < x.length; i++){
-  y += x[i] * Number(MODEL.coef[i] || 0);
-}
-
-const est = y;
+    const est = estimateFare(features);
 
     const act = actualFareFromDataset(features);
 
@@ -566,10 +426,10 @@ const est = y;
   el.btnRoute.addEventListener("click", findRoute);
   el.btnEstimate.addEventListener("click", estimateAndCompare);
 
+  [el.from, el.to].forEach(x => x.addEventListener("keydown", (e)=>{ if (e.key === "Enter") findRoute(); }));
+
   // Start
-// Start
-loadDataset();
-loadModel();
+  loadDataset();
 </script>
 </body>
 </html>

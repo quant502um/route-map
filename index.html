@@ -246,6 +246,14 @@ async function loadModel(){
     if (!data || data.length === 0) return null;
     return { lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon), name: data[0].display_name };
   }
+const FIXED_PLACES = {
+  "KLIA": { lat: 2.786557, lon: 101.688872, name: "KLIA Terminal 1" }
+};
+
+async function getLocation(q){
+  if (FIXED_PLACES[q]) return FIXED_PLACES[q];
+  return await geocode(q);
+}
 
   async function routeOSRM(from, to){
     const url = `https://router.project-osrm.org/route/v1/driving/${from.lon},${from.lat};${to.lon},${to.lat}?overview=full&geometries=geojson`;
@@ -271,7 +279,7 @@ if (!toQ) {
     try{
       clearMap();
       setStatus("Searching locations…");
-      const [a,b] = await Promise.all([geocode(fromQ), geocode(toQ)]);
+      const [a,b] = await Promise.all([geocode(fromQ), getLocation(toQ)]);
       if (!a) { setStatus("Pickup point not found. Try a more specific name."); return; }
       if (!b) { setStatus("Drop-off point not found. Try a more specific name."); return; }
 

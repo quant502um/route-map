@@ -61,13 +61,11 @@
 
     <div class="grid">
       <div>
-       <label for="from">📍 Pickup point</label>
-<input id="from" placeholder="e.g., 28 Mont Kiara / KL Sentral" />
-      </div>
+<label for="from">📍 Pickup point</label>
+<select id="from"></select>
 
-      <div>
-       <label for="to">⛳ Drop-off point</label>
-<input id="to" placeholder="e.g., Four Seasons Hotel KL" />
+<label for="to">⛳ Drop-off point</label>
+<select id="to"></select>
       </div>
 
       <div class="row2">
@@ -203,6 +201,25 @@ const DESTINATIONS = [
   { label: "Taylor's University", value: "Taylor's University", query: "Taylor's University, Subang Jaya" },
   { label: "1 Utama Shopping mall", value: "1 Utama Shopping mall", query: "1 Utama Shopping Centre, Petaling Jaya" }
 ];
+  const PICKUPS = [
+  {
+    label: "University of Tsukuba Malaysia (UTMy)",
+    value: "UTMy",
+    query: "University of Tsukuba Malaysia, Kuala Lumpur"
+  }
+];
+
+function populatePickups(){
+  el.from.innerHTML = '<option value="">Select pickup</option>';
+  PICKUPS.forEach(p => {
+    const opt = document.createElement("option");
+    opt.value = p.value;
+    opt.textContent = p.label;
+    opt.dataset.query = p.query;
+    el.from.appendChild(opt);
+  });
+}
+
 
 function populateDestinations(){
   el.to.innerHTML = '<option value="">Select destination</option>';
@@ -248,28 +265,54 @@ function populateDestinations(){
   function formatMin(min){ return `${Math.round(min)} min`; }
 
  async function findRoute(){
-  const selectedOpt = el.to.options[el.to.selectedIndex];
-  const toQ = selectedOpt?.dataset?.query || "";
-  if (!toQ) { setStatus("Please select a destination."); return; }
+  // pickup
+  const fromOpt = el.from.options[el.from.selectedIndex];
+  const fromQ = fromOpt?.dataset?.query || "";
+  if (!fromQ) { setStatus("Please select a pickup point."); return; }
 
-  const from = { lat: PICKUP.lat, lon: PICKUP.lon, name: PICKUP.label };
+  // destination
+  const toOpt = el.to.options[el.to.selectedIndex];
+  const toQ = toOpt?.dataset?.query || "";
+  if (!toQ) { setStatus("Please select a destination."); return; }
 
   try{
     clearMap();
+
+    setStatus("Searching pickup…");
+    const a = await geocode(fromQ);
+    if (!a) { setStatus("Pickup point not found."); return; }
+
     setStatus("Searching destination…");
     const b = await geocode(toQ);
-    if (!b) { setStatus("Drop-off point not found. Try a more specific name."); return; }
+    if (!b) { setStatus("Drop-off point not found."); return; }
 
     setStatus("Calculating route…");
-    const rt = await routeOSRM(from,b);
-    if (!rt) { setStatus("Route not found. Try different locations."); return; }
+    const rt = await routeOSRM(a, b);
+    if (!rt) { setStatus("Route not found."); return; }
 
-    // map draw...
-  } catch (e){
+    // draw markers
+    fromMarker = L.marker([a.lat, a.lon]).addTo(map).bindPopup("Pickup: " + a.name).openPopup();
+    toMarker = L.marker([b.lat, b.lon]).addTo(map).bindPopup("Drop-off: " + b.name);
+
+    // draw polyline
+    routeLine = L.geoJSON(rt.geojson, { style: { weight: 5 } }).addTo(map);
+    map.fitBounds(routeLine.getBounds(), { padding: [30,30] });
+
+    // update numbers
+    const distance_km = rt.distance_m / 1000;
+    const duration_min = rt.duration_s / 60;
+    lastRoute = { distance_km, duration_min };
+
+    el.distanceText.textContent = formatKm(distance_km);
+    el.durationText.textContent = formatMin(duration_min);
+
+    setStatus("Done.");
+  } catch(e){
     console.error(e);
     setStatus("Sorry—something went wrong.");
   }
 }
+
 
   // =========================
   // Dataset: load CSV from repo (data.csv)
@@ -446,7 +489,10 @@ const features = { ...lastRoute, hour, weekend, weather, rain, thunder, peak };
   [el.from, el.to].forEach(x => x.addEventListener("keydown", (e)=>{ if (e.key === "Enter") findRoute(); }));
 
   // Start
-  loadDataset();
+  // Start
+populatePickups();
+populateDestinations();
+loadDataset();
 </script>
 </body>
 </html>

@@ -474,7 +474,7 @@ const weather =
 
 const rain = (weather === "Rain") ? 1 : 0;
 const thunder = (weather === "Thunder") ? 1 : 0;
-const peak = isPeakHour(hour);   // ←これを追加（重要）
+const peak = isPeakHour(hour);
 
 const features = { ...lastRoute, hour, weekend, weather, rain, thunder, peak };
 console.log("FEATURES USED IN WEB:", features);
